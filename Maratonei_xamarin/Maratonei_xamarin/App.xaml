@@ -15,7 +15,6 @@
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BarTextColor" Value="White" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkBackgroundColor}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
