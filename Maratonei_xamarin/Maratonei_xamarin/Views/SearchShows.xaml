@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maratonei_xamarin.Views.SearchShows">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout>
+                <SearchBar x:Name="search_bar_shows" HorizontalOptions="Fill" SearchButtonPressed="search_bar_shows_SearchButtonPressed" />
+                <ListView x:Name="list_view_search_shows" 
+                          ItemsSource="{Binding g_SearchResult}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding ShowImage}" HeightRequest="100" Grid.Column="0" Grid.RowSpan="2"/>
+                                    <Label Text="{Binding TraktSearchResult.Title}" Grid.Row="0" Grid.Column="1"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Runtime: "/>
+                                        <Label Text="{Binding TraktSearchResult.Runtime}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                        <Label Text="{Binding TraktSearchResult.Network}"/>
+                                        <Label Text="-"/>
+                                        <Label Text="{Binding TraktSearchResult.Year}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                        <Label Text="Episodes: "/>
+                                        <Label Text="-"/>
+                                        <Label Text="{Binding TraktSearchResult.AiredEpisodes}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Grid Opacity="0.8" BackgroundColor="SlateGray" IsVisible="{Binding InLoading}">
+                <ActivityIndicator IsRunning="true" HeightRequest="100" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
