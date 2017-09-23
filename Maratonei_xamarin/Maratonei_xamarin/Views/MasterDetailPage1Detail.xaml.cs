@@ -12,6 +12,7 @@ using System.Reflection;
 using TvDbSharper;
 using System.Collections.ObjectModel;
 using Maratonei_xamarin.Helpers;
+using DLToolkit.Forms.Controls;
 
 namespace Maratonei_xamarin.Views {
     [XamlCompilation( XamlCompilationOptions.Compile )]
@@ -29,6 +30,9 @@ namespace Maratonei_xamarin.Views {
                 );
             tvclient = new TvDbClient();
             tvclient.AcceptedLanguage = "en";
+            //var embeddedImage = new Image { Source = ImageSource.FromResource( "Maratonei.check.png" ) };
+
+            //ggi.Source = embeddedImage.Source;
             getTrends();
         }
         public async void getTrends() {
@@ -45,13 +49,25 @@ namespace Maratonei_xamarin.Views {
                     if(i.Data.Length > 0)
                         Items.Add( i.Data[i.Data.Length-1].getImageUrl() );
 
-                    labelp.Text = labelp.Text + "\n" + ( $"Show: {show.Title} / Watchers: {trendingShow.Watchers}." );                   
+                   // labelp.Text = labelp.Text + "\n" + ( $"Show: {show.Title} / Watchers: {trendingShow.Watchers}." );                   
 
                 }
             }
             catch( Exception ex ) {
                 Debug.WriteLine( ex.StackTrace );
             }
+        }
+
+        private void lista_ItemTapped( object sender, ItemTappedEventArgs e ) {
+            var item = sender as FlowListView;
+            Debug.WriteLine( "aaaaaaaaaaaaaaaaaaaaaaaa: " + item.FlowLastTappedItem);
+            show( item.FlowLastTappedItem as string);
+        }
+
+        public async void show(string m) {
+
+            var g = await DisplayAlert( "Selecionado", m, "ok", "cancelar");
+            Debug.WriteLine( g );
         }
     }
 }

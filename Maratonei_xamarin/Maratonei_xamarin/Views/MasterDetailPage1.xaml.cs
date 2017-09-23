@@ -12,6 +12,9 @@ namespace Maratonei_xamarin.Views {
     public partial class MasterDetailPage1 : MasterDetailPage {
         public MasterDetailPage1() {
             InitializeComponent();
+            if( Device.RuntimePlatform == Device.Windows ) {
+                MasterBehavior = MasterBehavior.Popover; // Added this line of code
+            }
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 

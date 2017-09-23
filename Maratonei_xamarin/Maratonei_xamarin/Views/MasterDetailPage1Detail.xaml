@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Maratonei_xamarin;assembly=Maratonei_xamarin"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="Maratonei_xamarin.Views.MasterDetailPage1Detail"
              Title="Detail">
     <StackLayout Padding="10" Orientation="Vertical">
-        <Image Source="https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-previewer/Images/xamlp-list.png"/>
+        <Image x:Name="ggi" Source="{local:ImageResource Maratonei_xamarin.check.png}" WidthRequest="100" HeightRequest="100"/>
         <Label x:Name="labelp" Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it."/>
-        <flv:FlowListView x:Name="lista" FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="false" BackgroundColor="Black" >
+        <flv:FlowListView x:Name="lista" FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="true" FlowItemTapped="lista_ItemTapped" >
 
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding}"/>
+                    <Image Source="{Binding}" WidthRequest="100 "/>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
 
