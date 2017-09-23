@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maratonei_xamarin.Views.LoginPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Frame
+                    Padding="10"
+                    BackgroundColor="White">
+                    <StackLayout>
+                        <Entry x:Name="g_UserEntry" Placeholder="Usuário"/>
+                        <Entry x:Name="g_PasswordEntry" Placeholder="Senha"/>
+                        <Button VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#4a648e" Text="Acessar o Maratonei" TextColor="#f2f2f2" Clicked="LoginButton_OnClicked"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <ContentView x:Name="actInBackground"
+                         BackgroundColor="#222222" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsBusy}"/>
+            <ActivityIndicator x:Name="actInd"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                               IsRunning="{Binding g_LoginViewModel.IsBusy}"
+                               IsVisible="{Binding g_LoginViewModel.IsBusy}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -29,11 +29,11 @@ namespace Maratonei_xamarin.Views {
 
                 MenuItems = new ObservableCollection<MasterDetailPage1MenuItem>( new[]
                 {
-                    new MasterDetailPage1MenuItem { Id = 0, Title = "Page 1" },
-                    new MasterDetailPage1MenuItem { Id = 1, Title = "Page 2", TargetType = typeof(AboutPage) },
-                    new MasterDetailPage1MenuItem { Id = 2, Title = "Page 3", TargetType = typeof(ItemsPage) },
+                    new MasterDetailPage1MenuItem { Id = 0, Title = "Login", TargetType = typeof(LoginPage)},
+                    new MasterDetailPage1MenuItem { Id = 1, Title = "About", TargetType = typeof(AboutPage) },
+                    new MasterDetailPage1MenuItem { Id = 2, Title = "Teste", TargetType = typeof(ItemsPage) },
                     new MasterDetailPage1MenuItem { Id = 3, Title = "Pesquisa Séries", TargetType = typeof(SearchShows) },
-                    new MasterDetailPage1MenuItem { Id = 4, Title = "Page 5" },
+                    new MasterDetailPage1MenuItem { Id = 4, Title = "Outro Teste" },
                 } );
             }
 
