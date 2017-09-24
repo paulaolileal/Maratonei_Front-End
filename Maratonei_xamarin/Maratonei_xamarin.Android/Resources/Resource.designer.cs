@@ -64,6 +64,10 @@ namespace Maratonei_xamarin.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Maratonei_xamarin.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Maratonei_xamarin.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Splat.Resource.String.library_name = global::Maratonei_xamarin.Droid.Resource.String.library_name;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::Maratonei_xamarin.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::Maratonei_xamarin.Droid.Resource.String.Hello;
+			global::SQLite.Net.Platform.XamarinAndroidN.Resource.String.ApplicationName = global::Maratonei_xamarin.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroidN.Resource.String.Hello = global::Maratonei_xamarin.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Maratonei_xamarin.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3717,6 +3721,12 @@ namespace Maratonei_xamarin.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f09003f
+			public const int ApplicationName = 2131296319;
+			
+			// aapt resource value: 0x7f09003e
+			public const int Hello = 2131296318;
+			
 			// aapt resource value: 0x7f090015
 			public const int abc_action_bar_home_description = 2131296277;
 			
@@ -3810,8 +3820,8 @@ namespace Maratonei_xamarin.Droid
 			// aapt resource value: 0x7f090027
 			public const int abc_toolbar_collapse_description = 2131296295;
 			
-			// aapt resource value: 0x7f09003f
-			public const int app_name = 2131296319;
+			// aapt resource value: 0x7f090041
+			public const int app_name = 2131296321;
 			
 			// aapt resource value: 0x7f090036
 			public const int appbar_scrolling_view_behavior = 2131296310;
@@ -3822,8 +3832,8 @@ namespace Maratonei_xamarin.Droid
 			// aapt resource value: 0x7f090038
 			public const int character_counter_pattern = 2131296312;
 			
-			// aapt resource value: 0x7f09003e
-			public const int library_name = 2131296318;
+			// aapt resource value: 0x7f090040
+			public const int library_name = 2131296320;
 			
 			// aapt resource value: 0x7f090000
 			public const int mr_button_content_description = 2131296256;

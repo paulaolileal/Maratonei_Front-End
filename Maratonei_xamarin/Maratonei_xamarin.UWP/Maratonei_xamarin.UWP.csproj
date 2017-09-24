@@ -104,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Custom Controls\FlatButtonRenderer_UWP.cs" />
+    <Compile Include="Data Storage\SQLite_UWP.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +133,9 @@
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.20.1">
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
