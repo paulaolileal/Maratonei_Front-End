@@ -34,7 +34,7 @@ namespace Maratonei_xamarin.Views {
                     new MasterDetailPage1MenuItem { Id = 2, Title = "Teste", TargetType = typeof(ItemsPage) },
                     new MasterDetailPage1MenuItem { Id = 3, Title = "Pesquisa Séries", TargetType = typeof(SearchShows) },
                     new MasterDetailPage1MenuItem { Id = 4, Title = "Outro Teste" },
-                    new MasterDetailPage1MenuItem { Id = 5, Title = "Selecionar Episodios", TargetType = typeof(SelecionarEpisodios)},
+                    new MasterDetailPage1MenuItem { Id = 5, Title = "Selecionar Episodios", TargetType = typeof(SelecionarTemporadas)},
                 } );
             }
 

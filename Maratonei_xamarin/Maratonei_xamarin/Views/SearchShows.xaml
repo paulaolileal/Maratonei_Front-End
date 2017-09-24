@@ -52,7 +52,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <Grid Opacity="0.8" BackgroundColor="SlateGray" IsVisible="{Binding InLoading}">
+            <Grid Opacity="0.8" BackgroundColor="DimGray" IsVisible="{Binding InLoading}">
                 <ActivityIndicator IsRunning="true" HeightRequest="100" />
             </Grid>
         </Grid>

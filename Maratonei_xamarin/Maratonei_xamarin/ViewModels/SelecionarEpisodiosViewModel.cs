@@ -10,25 +10,27 @@ using TraktApiSharp;
 using TraktApiSharp.Objects.Get;
 using TraktApiSharp.Extensions;
 using TraktApiSharp.Objects.Get.Shows;
+using TraktApiSharp.Objects.Get.Shows.Episodes;
+using TraktApiSharp.Objects.Get.Shows.Seasons;
 using TraktApiSharp.Requests.Params;
 
 namespace Maratonei_xamarin.ViewModels {
     class SelecionarEpisodiosViewModel : BaseViewModel {
-        public ObservableCollection<SeasonModel> g_SeasonsList { get; set; }
+        public ObservableCollection<TraktSeason> g_SeasonsList { get; set; }
+        public TraktShow g_TraktSHow { get; set; }
 
         public SelecionarEpisodiosViewModel() {
-            g_SeasonsList = new ObservableCollection<SeasonModel>();
+            g_SeasonsList = new ObservableCollection<TraktSeason>();
             BuscarSerie( "353" );
-
         }
 
         public async void BuscarSerie( string id ) {
-            var show = await APIs.Instance.MainTraktClient.Shows.GetShowAsync( id, new TraktExtendedInfo { Full = true } );
-            var seasons = await APIs.Instance.MainTraktClient.Seasons.GetAllSeasonsAsync( show.Ids.Trakt.ToString(),
-                    new TraktExtendedInfo { Episodes = true } );
-            foreach( var season in seasons ) {
-                g_SeasonsList.Add( new SeasonModel( season.Episodes ) { Season = season } );
+            g_TraktSHow = await APIs.Instance.MainTraktClient.Shows.GetShowAsync( id, new TraktExtendedInfo { Full = true } );
+            var seasons = await APIs.Instance.MainTraktClient.Seasons.GetAllSeasonsAsync( g_TraktSHow.Ids.Trakt.ToString() );
+            foreach( var traktSeason in seasons ) {
+                g_SeasonsList.Add( traktSeason );
             }
+
         }
     }
 }
