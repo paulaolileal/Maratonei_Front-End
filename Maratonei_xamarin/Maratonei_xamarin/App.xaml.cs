@@ -1,4 +1,5 @@
 ﻿using DLToolkit.Forms.Controls;
+using Maratonei_xamarin.Services;
 using Maratonei_xamarin.Views;
 
 using Xamarin.Forms;
@@ -11,6 +12,7 @@ namespace Maratonei_xamarin {
             InitializeComponent();
             FlowListView.Init();
             SetMainPage();
+            APIs.Instance.Init();
         }
 
         public static void SetMainPage() {

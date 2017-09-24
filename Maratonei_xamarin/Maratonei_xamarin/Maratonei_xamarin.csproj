@@ -46,7 +46,9 @@
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemSearchShow.cs" />
+    <Compile Include="Models\SeasonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\APIs.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SearchShowViewModel.cs" />
+    <Compile Include="ViewModels\SelecionarEpisodiosViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,9 @@
     </Compile>
     <Compile Include="Views\SearchShows.xaml.cs">
       <DependentUpon>SearchShows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelecionarEpisodios.xaml.cs">
+      <DependentUpon>SelecionarEpisodios.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +191,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ItemsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SelecionarEpisodios.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
