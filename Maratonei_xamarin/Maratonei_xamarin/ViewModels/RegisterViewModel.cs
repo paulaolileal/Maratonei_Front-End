@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Net.Http;
+using System.Threading.Tasks;
+using TvDbSharper.Dto;
 
 namespace Maratonei_xamarin.ViewModels
 {
@@ -26,5 +29,9 @@ namespace Maratonei_xamarin.ViewModels
             }
         }
 
+        public async Task RegisterNewUser(User p_User)
+        {
+            var v_HttpClient = new HttpClient();
+        }
     }
 }

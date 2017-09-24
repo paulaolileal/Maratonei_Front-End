@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TvDbSharper.Dto;
 
 namespace Maratonei_xamarin.ViewModels
 {
@@ -29,6 +31,11 @@ namespace Maratonei_xamarin.ViewModels
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
+        }
+
+        public async Task Authenticate(User p_User)
+        {
+            var v_HttpClient = new HttpClient();
         }
 
     }
