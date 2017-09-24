@@ -19,5 +19,14 @@ namespace Maratonei_xamarin.Views {
         private void LoginButton_OnClicked( object sender, EventArgs e ) {
             g_LoginViewModel.IsBusy = !g_LoginViewModel.IsBusy;
         }
+
+        private async void RegisterButton_OnClicked(object sender, EventArgs e)
+        {
+            var v_RegisterPage = new RegisterPage();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Navigation.PushAsync(v_RegisterPage);
+            });
+        }
     }
 }
