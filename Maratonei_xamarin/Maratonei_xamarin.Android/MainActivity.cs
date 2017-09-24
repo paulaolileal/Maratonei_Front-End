@@ -15,6 +15,7 @@ namespace Maratonei_xamarin.Droid {
             base.OnCreate( bundle );
 
             global::Xamarin.Forms.Forms.Init( this, bundle );
+            var x = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
 
             LoadApplication( new App() );
         }
