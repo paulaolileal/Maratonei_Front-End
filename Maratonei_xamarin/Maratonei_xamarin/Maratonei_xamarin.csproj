@@ -45,6 +45,7 @@
     <Compile Include="Helpers\MessengingCenterAlert.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
+    <Compile Include="Helpers\RequestURLs.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\Item.cs" />
