@@ -2,58 +2,73 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maratonei_xamarin.Views.SearchShows">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SimpleLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="TextColor" Value="DarkGray"/>
+            </Style>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <StackLayout>
                 <SearchBar x:Name="search_bar_shows" HorizontalOptions="Fill" SearchButtonPressed="search_bar_shows_SearchButtonPressed" />
                 <ListView x:Name="list_view_search_shows" 
-                          ItemsSource="{Binding g_SearchResult}">
+                          ItemsSource="{Binding g_SearchResult}"
+                          VerticalOptions="FillAndExpand"
+                          HasUnevenRows="true">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Padding="8" Margin="0, 0, 0, 10">
+                                <Grid Padding="8" Margin="0, 0, 0, 10" RowSpacing="0.1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="68"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="1" VerticalOptions="CenterAndExpand">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <Label Text="{Binding TraktSearchResult.Title}" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}"/>
-                                        <StackLayout Orientation="Horizontal"  Grid.Row="1">
-                                            <Label Text="Runtime: " FontSize="12"/>
-                                            <Label Text="{Binding TraktSearchResult.Runtime}" FontSize="12"/>
+                                        <Label Text="{Binding TraktSearchResult.Title}" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" Margin="0"/>
+                                        <StackLayout Orientation="Horizontal"  Grid.Row="1" Margin="0" Padding="0" Spacing="0">
+                                            <Label Text="Runtime: " Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding TraktSearchResult.Runtime}" Style="{StaticResource SimpleLabel}"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" Grid.Row="2">
-                                            <Label Text="{Binding TraktSearchResult.Network}" FontSize="12"/>
-                                            <Label Text="-" FontSize="12"/>
-                                            <Label Text="{Binding TraktSearchResult.Year}" FontSize="12"/>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="0" Padding="0">
+                                            <Label Text="{Binding TraktSearchResult.Network}" Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="-" Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding TraktSearchResult.Year}" Style="{StaticResource SimpleLabel}"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" Grid.Row="3">
-                                            <Label Text="Episodes: " FontSize="12"/>
-                                            <Label Text="-" FontSize="12"/>
-                                            <Label Text="{Binding TraktSearchResult.AiredEpisodes}" FontSize="12"/>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="3" Margin="0" Padding="0">
+                                            <Label Text="Episodes: " Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="-" Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding TraktSearchResult.AiredEpisodes}" Style="{StaticResource SimpleLabel}"/>
                                         </StackLayout>
                                     </Grid>
+
+                                    <Frame Grid.Column="0" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
+                                        <Image Source="{Binding ShowImage}" Aspect="AspectFill" Margin="0"/>     
+                                    </Frame>
                                     
-                                    <Image Source="{Binding ShowImage}" HeightRequest="100" MinimumWidthRequest="68" Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>    
-                                    
+
                                     <Button Text="Add" Grid.Column="2" Clicked="Button_OnClicked" VerticalOptions="Center"/>
-                                    
+
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <Grid Opacity="0.8" BackgroundColor="SlateGray" IsVisible="{Binding InLoading}">
-                <ActivityIndicator IsRunning="true" HeightRequest="100" />
+            <Grid Opacity="0.8" BackgroundColor="DimGray" IsVisible="{Binding InLoading}">
+                <ActivityIndicator IsRunning="true" HeightRequest="50" />
             </Grid>
         </Grid>
     </ContentPage.Content>

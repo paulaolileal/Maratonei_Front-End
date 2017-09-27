@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maratonei_xamarin.Views.SelecionarEpisodio"
+             xmlns:customControls="clr-namespace:Maratonei_xamarin.Custom_Controls;assembly=Maratonei_xamarin">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <customControls:FlatButton BorderColor="Transparent"
+                        BackgroundColor="Transparent"
+                        Text="Selecionar Tudo"
+                        HorizontalOptions="Start"
+                        Clicked="Button_OnClicked_SelecionatTudo"/>
+                <customControls:FlatButton Clicked="Button_OnClicked" BorderColor="Transparent"
+                        BackgroundColor="Transparent"
+                        Text="Conluído"
+                        HorizontalOptions="End"></customControls:FlatButton>
+            </Grid>
+            <ListView ItemsSource="{Binding g_EpisodesList}" 
+                      MinimumHeightRequest="0" 
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Orientation="Vertical" Grid.Column="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Episodio: " Style="{DynamicResource ListItemTextStyle}"/>
+                                        <Label Text="{Binding Episode.Number}" Style="{DynamicResource ListItemTextStyle}"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Episode.Title}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                </StackLayout>
+                                
+                                    <Switch Grid.Column="1" IsToggled="{Binding Selecionado}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

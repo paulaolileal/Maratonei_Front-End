@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maratonei_xamarin.Views.SelecionarTemporadas">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="8" Margin="0, 0, 0, 10" RowSpacing="0.1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="68"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding g_TraktSHow.TraktSearchResult.Title}" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" Margin="0"/>
+                    <StackLayout Orientation="Horizontal"  Grid.Row="1" Margin="0" Padding="0" Spacing="0">
+                        <Label Text="Runtime: " FontSize="13"/>
+                        <Label Text="{Binding g_TraktSHow.TraktSearchResult.Runtime}" FontSize="13"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="0" Padding="0">
+                        <Label Text="{Binding g_TraktSHow.TraktSearchResult.Network}" FontSize="13"/>
+                        <Label Text="-" FontSize="13"/>
+                        <Label Text="{Binding g_TraktSHow.TraktSearchResult.Year}" FontSize="13"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="3" Margin="0" Padding="0">
+                        <Label Text="Episodes: " FontSize="13"/>
+                        <Label Text="-" FontSize="13"/>
+                        <Label Text="{Binding g_TraktSHow.TraktSearchResult.AiredEpisodes}" FontSize="13"/>
+                    </StackLayout>
+                </Grid>
+
+                <Frame Grid.Column="0" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
+                    <Image Source="{Binding g_TraktSHow.ShowImage}" Aspect="AspectFill" Margin="0"/>
+                </Frame>
+            </Grid>
+            <ListView  x:Name="GroupedView"
+                       ItemsSource="{Binding g_SeasonsList}"
+                       VerticalOptions="FillAndExpand"
+                       HasUnevenRows="true"
+                       ItemTapped="GroupedView_OnItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Switch Grid.Column="1" IsToggled="{Binding Selecionado}"/>
+                                    <StackLayout Orientation="Vertical" Grid.Column="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Temporada " VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"></Label>
+                                            <Label Text="{Binding Season.Number}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"></Label>
+                                        </StackLayout>
+                                        
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Season.TotalEpisodesCount}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                            <Label Text=" Episódios" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                        </StackLayout>
+                                        
+                                    </StackLayout>
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
