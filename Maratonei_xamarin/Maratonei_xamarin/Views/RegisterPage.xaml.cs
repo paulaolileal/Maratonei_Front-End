@@ -39,13 +39,22 @@ namespace Maratonei_xamarin.Views
                     {
                         var v_InvalidUser = "This username is already being used.";
                         var v_ResultCadastro = await g_RegisterViewModel.CadastraNovoUsuario(v_User);
-                        v_User = JsonConvert.DeserializeObject<User>(v_ResultCadastro);
-                        g_RegisterViewModel.InsereNovoUsuario(v_User);
 
-                        Device.BeginInvokeOnMainThread(async () =>
+                        if (!v_InvalidUser.Equals(v_ResultCadastro))
                         {
-                            await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
-                        });
+                            v_User = JsonConvert.DeserializeObject<User>(v_ResultCadastro);
+                            g_RegisterViewModel.InsereNovoUsuario(v_User);
+
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
+                            }); 
+                        }
+
+                        else
+                        {
+                            await DisplayAlert("Aviso",$"O usuário {v_User.Nome} já está em uso","Ok");
+                        }
                     }
                     catch (Exception exc)
                     {
