@@ -4,6 +4,17 @@
              x:Class="Maratonei_xamarin.Views.SelecionarEpisodio">
     <ContentPage.Content>
         <StackLayout>
+            <Grid>
+                <Button BorderColor="Transparent"
+                        BackgroundColor="Transparent"
+                        Text="Selecionar Tudo"
+                        HorizontalOptions="Start"
+                        Clicked="Button_OnClicked_SelecionatTudo"/>
+                <Button Clicked="Button_OnClicked" BorderColor="Transparent"
+                        BackgroundColor="Transparent"
+                        Text="Conluído"
+                        HorizontalOptions="End"></Button>
+            </Grid>
             <ListView ItemsSource="{Binding g_EpisodesList}" 
                       MinimumHeightRequest="0" 
                       VerticalOptions="FillAndExpand"
@@ -11,15 +22,20 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid Padding="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="Episodio"
-                                       Grid.Column="0">
-                                </Label>
-                                <Switch Grid.Column="1"/>
+                                <StackLayout Orientation="Vertical" Grid.Column="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Episodio: " Style="{DynamicResource ListItemTextStyle}"/>
+                                        <Label Text="{Binding Episode.Number}" Style="{DynamicResource ListItemTextStyle}"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Episode.Title}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                </StackLayout>
+                                
+                                    <Switch Grid.Column="1" IsToggled="{Binding Selecionado}"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

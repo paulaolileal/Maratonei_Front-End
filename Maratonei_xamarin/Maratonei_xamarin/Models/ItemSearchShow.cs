@@ -1,7 +1,7 @@
 ﻿using TraktApiSharp.Objects.Get.Shows;
 
 namespace Maratonei_xamarin.Models {
-    class ItemSearchShow : BaseDataObject {
+    public class ItemSearchShow : BaseDataObject {
 
         TraktShow traktSearchResult;
         public TraktShow TraktSearchResult {

@@ -116,6 +116,7 @@
   <ItemGroup>
     <Content Include="collapsed_blue.png" />
     <Content Include="expanded_blue.png" />
+    <Content Include="no_image.png" />
     <Content Include="profile_generic.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="slideout.png" />

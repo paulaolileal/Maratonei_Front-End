@@ -12,10 +12,17 @@ namespace Maratonei_xamarin {
             InitializeComponent();
             FlowListView.Init();
             SetMainPage();
-            APIs.Instance.Init();
+        }
+
+        public static async void InitApis()
+        {
+            await APIs.Instance.Init();
         }
 
         public static void SetMainPage() {
+
+            InitApis();
+
             Current.MainPage = new MasterDetailPage1();
             //    new TabbedPage {
             //    Children =

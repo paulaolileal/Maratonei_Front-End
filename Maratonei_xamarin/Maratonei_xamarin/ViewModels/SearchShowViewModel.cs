@@ -37,7 +37,7 @@ namespace Maratonei_xamarin.ViewModels {
                 );
 
             foreach( var item in result ) {
-                var img = "";
+                var img = "no_image.png";
                 if( item.Show.Ids.Tvdb != null ) {
                     try {
                         var i = await APIs.Instance.MainTvDbClient.Series.GetImagesAsync( 
