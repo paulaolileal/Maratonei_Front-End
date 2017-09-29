@@ -19,10 +19,9 @@ namespace Maratonei_xamarin.Data_Storage
             Connection.CreateTable<User>();
         }
 
-        public void InsertUserTest()
+        public void InsertUser(User p_User)
         {
-            var User = new User() { Nome = "Teste" };
-            Connection.InsertOrReplaceWithChildren(User);
+            Connection.InsertOrReplaceWithChildren(p_User);
         }
 
         public List<User> RecoverUsers()

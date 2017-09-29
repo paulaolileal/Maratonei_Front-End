@@ -20,10 +20,11 @@ namespace Maratonei_xamarin {
         }
 
         public static void SetMainPage() {
-
+            
             InitApis();
 
-            Current.MainPage = new MasterDetailPage1();
+            Current.MainPage = new NavigationPage(new LoginPage());
+            //Current.MainPage = new MasterDetailPage1();
             //    new TabbedPage {
             //    Children =
             //    {
