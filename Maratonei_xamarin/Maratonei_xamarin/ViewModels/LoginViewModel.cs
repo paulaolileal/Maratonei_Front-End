@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -41,10 +42,10 @@ namespace Maratonei_xamarin.ViewModels
         {
             try
             {
-                dynamic v_User = new JObject();
+                dynamic v_User = new ExpandoObject();
                 v_User.nome = p_User.Nome;
                 v_User.senha = p_User.Senha;
-                var v_UserJson = v_User.ToString();
+                var v_UserJson = JsonConvert.SerializeObject(v_User);
                 var v_HttpClient = new HttpClient();
                 var v_RequestUri = new Uri(RequestURLs.LoginURL);
                 var v_Request = new HttpRequestMessage()

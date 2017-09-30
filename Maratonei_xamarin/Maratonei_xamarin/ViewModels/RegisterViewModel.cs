@@ -1,18 +1,26 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Maratonei_xamarin.Data_Storage;
 using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TraktApiSharp;
+using TraktApiSharp.Modules;
+using TraktApiSharp.Objects.Get.Users;
 
 namespace Maratonei_xamarin.ViewModels
 {
     public class RegisterViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private string CLIENT_ID = "8b52de13c749647158ee90572d975e5b3a12af509a67a6448b89e1b3095a5081";
+        private string CLIENT_SECRET = "f9ab8994b6fe8c52717173516a4962830d274f3e84cbae8093b1d4022c7b0027";
+
         private bool isBusy;
         public bool IsBusy
         {
@@ -34,17 +42,36 @@ namespace Maratonei_xamarin.ViewModels
             }
         }
 
+        public async Task<bool> ValidaUsuarioTrakt(string p_UserTrakt)
+        {
+            var v_Result = true;
+            var v_TraktClient = new TraktClient(CLIENT_ID,CLIENT_SECRET);
+            TraktUser v_UserProfile;
+            
+            try
+            {
+                v_UserProfile = await v_TraktClient.Users.GetUserProfileAsync(p_UserTrakt);
+                int x;
+            }
+            catch (Exception e)
+            {
+
+                v_Result = false;
+            }
+            return v_Result;
+        }
+
         public async Task<string> CadastraNovoUsuario(User p_User)
         {
             var v_ResultCadastro = "";
             var v_HttpClient = new HttpClient();
-            dynamic v_UserJsonObj = new JObject();
+            dynamic v_UserJsonObj = new ExpandoObject();
 
             v_UserJsonObj.nome = p_User.Nome;
             v_UserJsonObj.senha = p_User.Senha;
             v_UserJsonObj.traktUser = p_User.TraktUser;
 
-            var v_UserJsonString = v_UserJsonObj.ToString();
+            var v_UserJsonString = JsonConvert.SerializeObject(v_UserJsonObj);
             var v_RequestUri = new Uri(RequestURLs.RegisterUserURL);
 
             try

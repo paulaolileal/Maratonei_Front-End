@@ -15,12 +15,13 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Image x:Name="g_Logo" Source="LogoMaratonei.png"/>
                 <Frame
                     Padding="10"
                     BackgroundColor="#f2f2f2">
                     <StackLayout>
-                        <Entry x:Name="g_UserEntry" Placeholder="Usuário"/>
-                        <Entry x:Name="g_PasswordEntry" Placeholder="Senha" IsPassword="True"/>
+                        <Entry x:Name="g_UserEntry" Placeholder="Usuário" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
+                        <Entry x:Name="g_PasswordEntry" Placeholder="Senha" IsPassword="True" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
                         <Button VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#4a648e" Text="Acessar o Maratonei" TextColor="#f2f2f2" Clicked="LoginButton_OnClicked"/>
                     </StackLayout>
                 </Frame>
