@@ -18,6 +18,7 @@ namespace Maratonei_xamarin.Views
         public LoginPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
+            //g_Logo.Source = "Logo-Maratonei.png";
             InitializeComponent();
             BindingContext = g_LoginViewModel = new LoginViewModel();
         }

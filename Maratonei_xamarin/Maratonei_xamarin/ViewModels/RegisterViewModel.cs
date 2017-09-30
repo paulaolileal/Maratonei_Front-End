@@ -1,12 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Maratonei_xamarin.Data_Storage;
 using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TraktApiSharp;
 
 namespace Maratonei_xamarin.ViewModels
 {
@@ -34,17 +37,32 @@ namespace Maratonei_xamarin.ViewModels
             }
         }
 
+        public async Task<bool> ValidaUsuarioTrakt(string p_UserTrakt)
+        {
+            var v_Result = true;
+            try
+            {
+                var v_TraktClient = new TraktClient(p_UserTrakt);
+            }
+            catch (Exception e)
+            {
+
+                v_Result = false;
+            }
+            return v_Result;
+        }
+
         public async Task<string> CadastraNovoUsuario(User p_User)
         {
             var v_ResultCadastro = "";
             var v_HttpClient = new HttpClient();
-            dynamic v_UserJsonObj = new JObject();
+            dynamic v_UserJsonObj = new ExpandoObject();
 
             v_UserJsonObj.nome = p_User.Nome;
             v_UserJsonObj.senha = p_User.Senha;
             v_UserJsonObj.traktUser = p_User.TraktUser;
 
-            var v_UserJsonString = v_UserJsonObj.ToString();
+            var v_UserJsonString = JsonConvert.SerializeObject(v_UserJsonObj);
             var v_RequestUri = new Uri(RequestURLs.RegisterUserURL);
 
             try

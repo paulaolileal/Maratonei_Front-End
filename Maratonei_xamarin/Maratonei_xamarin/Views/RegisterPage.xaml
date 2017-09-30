@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Maratonei_xamarin.Views.RegisterPage">
+             x:Class="Maratonei_xamarin.Views.RegisterPage"
+             BackgroundColor="#0F0F0F">
     <ContentPage.Content>
         <AbsoluteLayout>
 
@@ -15,11 +16,11 @@
                                 <Setter Property="TextColor" Value="Black"/>
                             </Style>
                         </StackLayout.Style>
-                        <Entry x:Name="g_EmailEntry" Placeholder="Preencha o email"/>
-                        <Entry x:Name="g_TraktUserEntry" Placeholder="Entre com o seu Usuário do Trakt"/>
-                        <Entry x:Name="g_UserEntry" Placeholder="Preencha o nome de usuário"/>
-                        <Entry x:Name="g_PasswordEntry" Placeholder="Preencha sua senha" IsPassword="True"/>
-                        <Entry x:Name="g_ConfirmPasswordEntry" Placeholder="Confirme sua senha" IsPassword="True"/>
+                        <Entry x:Name="g_EmailEntry" Placeholder="Preencha o email" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
+                        <Entry x:Name="g_TraktUserEntry" Placeholder="Entre com o seu Usuário do Trakt" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
+                        <Entry x:Name="g_UserEntry" Placeholder="Preencha o nome de usuário" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
+                        <Entry x:Name="g_PasswordEntry" Placeholder="Preencha sua senha" IsPassword="True" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
+                        <Entry x:Name="g_ConfirmPasswordEntry" Placeholder="Confirme sua senha" IsPassword="True" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
                         <Button x:Name="g_SubmitButton" BackgroundColor="#4a648e" Text="Submeter" TextColor="#f2f2f2" Clicked="G_SubmitButton_OnClicked"/>
                     </StackLayout>
                 </Frame>

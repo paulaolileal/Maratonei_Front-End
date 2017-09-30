@@ -18,6 +18,10 @@ namespace Maratonei_xamarin.Views
         public RegisterPage()
         {
             InitializeComponent();
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                NavigationPage.SetHasNavigationBar(this, false);
+            }
             BindingContext = g_RegisterViewModel = new RegisterViewModel();
         }
 
@@ -35,30 +39,38 @@ namespace Maratonei_xamarin.Views
                     };
                     g_RegisterViewModel.IsBusy = true;
 
-                    try
+                    if (await g_RegisterViewModel.ValidaUsuarioTrakt(v_User.TraktUser))
                     {
-                        var v_InvalidUser = "This username is already being used.";
-                        var v_ResultCadastro = await g_RegisterViewModel.CadastraNovoUsuario(v_User);
-
-                        if (!v_InvalidUser.Equals(v_ResultCadastro))
+                        try
                         {
-                            v_User = JsonConvert.DeserializeObject<User>(v_ResultCadastro);
-                            g_RegisterViewModel.InsereNovoUsuario(v_User);
+                            var v_InvalidUser = "This username is already being used.";
+                            var v_ResultCadastro = await g_RegisterViewModel.CadastraNovoUsuario(v_User);
 
-                            Device.BeginInvokeOnMainThread(async () =>
+                            if (!v_InvalidUser.Equals(v_ResultCadastro))
                             {
-                                await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
-                            }); 
-                        }
+                                v_User = JsonConvert.DeserializeObject<User>(v_ResultCadastro);
+                                g_RegisterViewModel.InsereNovoUsuario(v_User);
 
-                        else
-                        {
-                            await DisplayAlert("Aviso",$"O usuário {v_User.Nome} já está em uso","Ok");
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
+                                });
+                            }
+
+                            else
+                            {
+                                await DisplayAlert("Aviso", $"O usuário {v_User.Nome} já está em uso", "Ok");
+                            }
                         }
+                        catch (Exception exc)
+                        {
+                            await DisplayAlert("Erro", "Ocorreu uma exceção não prevista no cadastro de novo usuário, por favor contacte os desenvolvedores informando esta mensagem: " + exc.Message, "Ok");
+                        } 
                     }
-                    catch (Exception exc)
+
+                    else
                     {
-                        await DisplayAlert("Erro", "Ocorreu uma exceção não prevista no cadastro de novo usuário, por favor contacte os desenvolvedores informando esta mensagem: " + exc.Message, "Ok");
+                        
                     }
 
                     g_RegisterViewModel.IsBusy = false;
