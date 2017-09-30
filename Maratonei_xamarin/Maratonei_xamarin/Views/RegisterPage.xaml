@@ -7,7 +7,7 @@
         <AbsoluteLayout>
 
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <Frame BackgroundColor="#f2f2f2"
+                <Frame BackgroundColor="#f2f2f2" 
                        Padding="10">
                     <StackLayout>
                         <StackLayout.Style>

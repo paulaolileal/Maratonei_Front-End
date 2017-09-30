@@ -10,12 +10,17 @@ using Maratonei_xamarin.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktApiSharp;
+using TraktApiSharp.Modules;
+using TraktApiSharp.Objects.Get.Users;
 
 namespace Maratonei_xamarin.ViewModels
 {
     public class RegisterViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private string CLIENT_ID = "8b52de13c749647158ee90572d975e5b3a12af509a67a6448b89e1b3095a5081";
+        private string CLIENT_SECRET = "f9ab8994b6fe8c52717173516a4962830d274f3e84cbae8093b1d4022c7b0027";
+
         private bool isBusy;
         public bool IsBusy
         {
@@ -40,9 +45,13 @@ namespace Maratonei_xamarin.ViewModels
         public async Task<bool> ValidaUsuarioTrakt(string p_UserTrakt)
         {
             var v_Result = true;
+            var v_TraktClient = new TraktClient(CLIENT_ID,CLIENT_SECRET);
+            TraktUser v_UserProfile;
+            
             try
             {
-                var v_TraktClient = new TraktClient(p_UserTrakt);
+                v_UserProfile = await v_TraktClient.Users.GetUserProfileAsync(p_UserTrakt);
+                int x;
             }
             catch (Exception e)
             {

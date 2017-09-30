@@ -70,7 +70,7 @@ namespace Maratonei_xamarin.Views
 
                     else
                     {
-                        
+                        await DisplayAlert("Aviso", $"O usuário Trakt {v_User.TraktUser} já está em uso", "Ok");
                     }
 
                     g_RegisterViewModel.IsBusy = false;
