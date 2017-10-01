@@ -1,4 +1,6 @@
-﻿namespace Maratonei_xamarin.Helpers
+﻿using System;
+
+namespace Maratonei_xamarin.Helpers
 {
     public static class RequestURLs
     {
@@ -8,6 +10,7 @@
         public static readonly string GetUserURL = $"{BaseURL}api/Usuarios/";
         public static readonly string GetEnumerableUsersURL = $"{BaseURL}api/Usuarios/1";
         public static readonly string RegisterUserURL = $"{BaseURL}api/Usuarios/";
+        public static readonly string SimplexURL = $"{BaseURL}api/Simplex/Solver";
     }
 }
 

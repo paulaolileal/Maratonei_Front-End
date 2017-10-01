@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maratonei_xamarin.Views.SelecionarEpisodio"
              xmlns:customControls="clr-namespace:Maratonei_xamarin.Custom_Controls;assembly=Maratonei_xamarin">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Selecionar Todos" Clicked="Button_OnClicked_SelecionatTudo" />
+        <ToolbarItem Text="Ok" Clicked="Button_OnClicked" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
+            <!--<Grid>
                 <customControls:FlatButton BorderColor="Transparent"
                         BackgroundColor="Transparent"
                         Text="Selecionar Tudo"
@@ -15,7 +19,7 @@
                         BackgroundColor="Transparent"
                         Text="Conluído"
                         HorizontalOptions="End"></customControls:FlatButton>
-            </Grid>
+            </Grid>-->
             <ListView ItemsSource="{Binding g_EpisodesList}" 
                       MinimumHeightRequest="0" 
                       VerticalOptions="FillAndExpand"

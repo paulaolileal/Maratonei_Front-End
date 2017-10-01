@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maratonei_xamarin.Models;
 using Maratonei_xamarin.ViewModels;
 using TraktApiSharp.Objects.Get.Shows;
 using TraktApiSharp.Objects.Get.Shows.Episodes;
@@ -20,7 +21,7 @@ namespace Maratonei_xamarin.Views {
 
         public SelecionarEpisodioViewModel ViewModel;
 
-        public SelecionarEpisodio(TraktShow show, SelecionarTemporadaViewModel.ItemSelecionarTemporada season ) {
+        public SelecionarEpisodio(TraktShow show, ItemSelecionarTemporada season ) {
             InitializeComponent();
             BindingContext = ViewModel = new SelecionarEpisodioViewModel(show, season);
         }

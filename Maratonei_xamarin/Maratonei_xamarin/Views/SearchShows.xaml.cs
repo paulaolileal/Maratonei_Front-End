@@ -26,8 +26,9 @@ namespace Maratonei_xamarin.Views {
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            var btn = sender as Button;
-            var show = (btn.BindingContext as ItemSearchShow).TraktSearchResult;
+            var v_btn = sender as Button;
+            var v_result = (v_btn.BindingContext as ItemSearchShow);
+            var v_show = v_result.TraktSearchResult;
 
             var toastConfig = new ToastConfig( "Toasting..." );
             toastConfig.SetDuration( 3000 );
@@ -36,6 +37,25 @@ namespace Maratonei_xamarin.Views {
             UserDialogs.Instance.Toast( toastConfig );
 
             // TODO adicionar serie à maratorna
+            v_result.Selecionado = !v_result.Selecionado;
+            if (v_result.Selecionado)
+            {
+                g_viewModel.g_listaSelecionados.Add(v_result.TraktSearchResult);
+                v_btn.Text = "Remove";
+            }
+            else
+            {
+                g_viewModel.g_listaSelecionados.Remove(v_show);
+                v_btn.Text = "Add";
+            }
+        }
+
+        private void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Navigation.PushAsync(new MaratonarPage(g_viewModel.g_listaSelecionados));
+            });
         }
     }
 }

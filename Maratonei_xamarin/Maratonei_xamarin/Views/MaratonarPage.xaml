@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maratonei_xamarin.Views.MaratonarPage"
+             xmlns:customControls="clr-namespace:Maratonei_xamarin.Custom_Controls;assembly=Maratonei_xamarin">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Grid  BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                    <StackLayout Margin="36" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Tempo disponível"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Entry Text="{Binding g_Model.HoraTotal}" Keyboard="Numeric" Placeholder="TempoPausa disponível" TextChanged="Entry_OnTextChanged"/>
+                            <Label Text="h" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                            <Entry Text="{Binding g_Model.MinutoTotal}" Keyboard="Numeric" Placeholder="TempoPausa disponível" TextChanged="Entry_OnTextChanged"/>
+                            <Label Text="min" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Button Text="MARATONAR" HorizontalOptions="CenterAndExpand" Clicked="Button_Maratonar_OnClicked"/>
+                    </StackLayout>
+                </Grid>
+
+
+                <ListView ItemsSource="{Binding g_Model.ListShow}"
+                          HasUnevenRows="true"
+                          CachingStrategy="RecycleElement">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="8" Margin="0, 0, 0, 10" RowSpacing="0.1">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="68"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Text="{Binding TraktShow.Title}" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" Margin="0"/>
+                                        <StackLayout Orientation="Horizontal"  Grid.Row="1" Margin="0" Padding="0" Spacing="0">
+                                            <Label Text="Runtime: " Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding TraktShow.Runtime}" Style="{StaticResource SimpleLabel}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="0" Padding="0">
+                                            <Label Text="{Binding TraktShow.Network}" Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="-" Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding TraktShow.Year}" Style="{StaticResource SimpleLabel}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="3" Margin="0" Padding="0">
+                                            <Label Text="Episodes: " Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="-" Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding TraktShow.AiredEpisodes}" Style="{StaticResource SimpleLabel}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="6" Margin="0" Padding="0">
+                                            <Label Text="Quantidade mínima:" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
+                                            <Entry Text="{Binding MinimoEpisodios}" VerticalOptions="Center" MinimumWidthRequest="30"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="4" Margin="0" Padding="0">
+                                            <Label Text="Intervalo entre episódios: " Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                                            <Entry Text="{Binding TempoPausa}" VerticalOptions="Center" MinimumWidthRequest="30"/>
+                                            <Label Text="min" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="5" Margin="0" Padding="0">
+                                            <Label Text="Episodios Selecionados:" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
+                                            <Label Text="{Binding EpisodiosSelecionados}" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
+                                            <customControls:FlatButton Text="Add" Clicked="Button_OnClicked" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <Frame Grid.Column="0" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
+                                        <Image Source="{Binding ShowImage}" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
