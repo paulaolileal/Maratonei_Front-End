@@ -1,0 +1,28 @@
+﻿using System.Collections.Generic;
+using TraktApiSharp.Objects.Get.Shows.Episodes;
+using TraktApiSharp.Objects.Get.Shows.Seasons;
+
+namespace Maratonei_xamarin.Models {
+    public class ItemSelecionarTemporada : BaseDataObject {
+        private TraktSeason _season;
+        private List<TraktEpisode> _episodes;
+        private bool _selecionado;
+
+        public TraktSeason Season {
+            get { return _season; }
+            set { SetProperty( ref _season, value ); }
+        }
+
+        public bool Selecionado {
+            get { return _selecionado; }
+            set { SetProperty( ref _selecionado, value ); }
+        }
+
+        public List<TraktEpisode> Episodes
+        {
+            get { return _episodes; }
+            set { SetProperty(ref _episodes, value); }
+        }
+    }
+}
+

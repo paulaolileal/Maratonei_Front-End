@@ -14,6 +14,12 @@ namespace Maratonei_xamarin.Models {
             get { return showImage; }
             set { SetProperty( ref showImage, value ); }
         }
-        
+
+        private bool _selecionado;
+        public bool Selecionado
+        {
+            get { return _selecionado; }
+            set { SetProperty(ref _selecionado, value); }
+        }
     }
 }

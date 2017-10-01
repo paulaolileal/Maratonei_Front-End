@@ -7,32 +7,15 @@ using System.Threading.Tasks;
 using Maratonei_xamarin.Models;
 using Maratonei_xamarin.Services;
 using TraktApiSharp.Objects.Get.Shows;
-using TraktApiSharp.Objects.Get.Shows.Episodes;
 using TraktApiSharp.Objects.Get.Shows.Seasons;
 using TraktApiSharp.Requests.Params;
 
 namespace Maratonei_xamarin.ViewModels {
-    public class SelecionarEpisodioViewModel {
-
-        public class ItemSelecionarEpisodio : BaseDataObject {
-            public TraktEpisode Episode
-            {
-                get => _episode;
-                set => SetProperty(ref _episode , value);
-            }
-
-            private bool _selecionado;
-            private TraktEpisode _episode;
-
-            public bool Selecionado {
-                get => _selecionado;
-                set => SetProperty( ref _selecionado, value );
-            }
-        }
-        public SelecionarTemporadaViewModel.ItemSelecionarTemporada g_TraktSeason { get; set; }
+    public partial class SelecionarEpisodioViewModel {
+        public ItemSelecionarTemporada g_TraktSeason { get; set; }
         public TraktShow g_TraktSHow { get; set; }
         public ObservableCollection<ItemSelecionarEpisodio> g_EpisodesList { get; set; }
-        public SelecionarEpisodioViewModel( TraktShow gTraktShow, SelecionarTemporadaViewModel.ItemSelecionarTemporada gTraktSeason ) {
+        public SelecionarEpisodioViewModel( TraktShow gTraktShow, ItemSelecionarTemporada gTraktSeason ) {
             g_TraktSeason = gTraktSeason;
             g_TraktSHow = gTraktShow;
             g_EpisodesList = new ObservableCollection<ItemSelecionarEpisodio>();

@@ -12,6 +12,9 @@
         </ResourceDictionary>
 
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="MARATONAR" Clicked="MenuItem_OnClicked"/> 
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
             <StackLayout>

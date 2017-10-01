@@ -49,7 +49,7 @@ namespace Maratonei_xamarin.Views {
                     if(i.Data.Length > 0)
                         Items.Add( i.Data[i.Data.Length-1].getImageUrl() );
 
-                   // labelp.Text = labelp.Text + "\n" + ( $"Show: {show.Title} / Watchers: {trendingShow.Watchers}." );                   
+                   // labelp.Text = labelp.Text + "\n" + ( $"TraktShow: {show.Title} / Watchers: {trendingShow.Watchers}." );                   
 
                 }
             }
