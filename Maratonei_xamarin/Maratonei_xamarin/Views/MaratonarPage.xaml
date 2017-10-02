@@ -59,7 +59,7 @@
                                             <Label Text="-" Style="{StaticResource SimpleLabel}"/>
                                             <Label Text="{Binding TraktShow.AiredEpisodes}" Style="{StaticResource SimpleLabel}"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" Grid.Row="6" Margin="0" Padding="0">
+                                        <StackLayout Orientation="Horizontal" Grid.Row="5" Margin="0" Padding="0">
                                             <Label Text="Quantidade mínima:" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
                                             <Entry Text="{Binding MinimoEpisodios}" VerticalOptions="Center" MinimumWidthRequest="30"/>
                                         </StackLayout>
@@ -68,7 +68,7 @@
                                             <Entry Text="{Binding TempoPausa}" VerticalOptions="Center" MinimumWidthRequest="30"/>
                                             <Label Text="min" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" Grid.Row="5" Margin="0" Padding="0">
+                                        <StackLayout Orientation="Horizontal" Grid.Row="6" Margin="0" Padding="0">
                                             <Label Text="Episodios Selecionados:" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
                                             <Label Text="{Binding EpisodiosSelecionados}" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
                                             <customControls:FlatButton Text="Add" Clicked="Button_OnClicked" VerticalOptions="Center"/>

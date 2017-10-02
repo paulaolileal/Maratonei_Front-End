@@ -6,54 +6,60 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Maratonei_xamarin.Models {
-    
-    public class Z {
-
-        [JsonProperty( "item1" )]
-        public string Item1 { get; set; }
-
-        [JsonProperty( "item2" )]
-        public int Item2 { get; set; }
-    }
 
     public class ObjectiveFunction {
+        public List<Tuple<string, double>> Z;
+        public FuncType Type;
+        public RespType Solution;
+
         public enum FuncType { Max = 1, Min = 0 };
         public enum RespType { Optimum = 0, Unlimited = 1, Multiple = 2, Impossible = 3, NotASolution = 4 };
 
-        [JsonProperty( "z" )]
-        public IList<Z> Z { get; set; }
+        public ObjectiveFunction() { }
 
-        [JsonProperty( "type" )]
-        public FuncType Type { get; set; }
+        public ObjectiveFunction( FuncType funcType ) {
+            Z = new List<Tuple<string, double>>();
+            Type = funcType;
+            Solution = RespType.NotASolution;
+        }
 
-        [JsonProperty( "solution" )]
-        public RespType Solution { get; set; }
+        public ObjectiveFunction( FuncType Type, RespType solution ) {
+            Z = new List<Tuple<string, double>>();
+            Solution = solution;
+        }
+
+        public void Add( string variable, double value ) {
+            Z.Add( new Tuple<string, double>( variable, value ) );
+        }
+        
     }
-
-    public class R {
-
-        [JsonProperty( "item1" )]
-        public string Item1 { get; set; }
-
-        [JsonProperty( "item2" )]
-        public int Item2 { get; set; }
-    }
-
     public class Restriction {
+        public List<Tuple<string, double>> R;
+        public FuncType Type;
         public enum FuncType { GreaterEqual = 1, LessEqual = 0 }
-        [JsonProperty( "r" )]
-        public IList<R> R { get; set; }
 
-        [JsonProperty( "type" )]
-        public FuncType Type { get; set; }
-    }
+        public Restriction()
+        {
+        }
 
-    public class Example {
+        public Restriction( FuncType type ) {
+            R = new List<Tuple<string, double>>();
+            Type = type;
+        }
 
-        [JsonProperty( "objectiveFunction" )]
-        public ObjectiveFunction ObjectiveFunction { get; set; }
+        public void Add( string variable, double value ) {
+            R.Add( new Tuple<string, double>( variable, value ) );
+        }
 
-        [JsonProperty( "restrictions" )]
-        public IList<Restriction> Restrictions { get; set; }
+        public List<Tuple<string, double>> Transform() {
+            var TransformedR = new List<Tuple<string, double>>();
+            if( Type == FuncType.GreaterEqual ) {
+                foreach( var element in R ) {
+                    TransformedR.Add( new Tuple<string, double>( element.Item1, element.Item2 * -1 ) );
+                }
+                return TransformedR;
+            }
+            return R;
+        }
     }
 }

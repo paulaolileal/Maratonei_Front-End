@@ -32,40 +32,40 @@ namespace Maratonei_xamarin.ViewModels {
             // Criando Z
             // Cada série é uma variável
             var v_ob = new ObjectiveFunction();
-            v_ob.Z = new List<Z>();
+            v_ob.Z = new List<Tuple<string, double>>();
             v_ob.Type = ObjectiveFunction.FuncType.Max;
             v_ob.Solution = ObjectiveFunction.RespType.NotASolution;
 
             foreach( var listaShowRequisicao in g_Model.ListShow ) {
-                v_ob.Z.Add( new Z { Item1 = listaShowRequisicao.TraktShow.Ids.Trakt.ToString(), Item2 = 1 } );
+                v_ob.Z.Add( new Tuple<string, double>( listaShowRequisicao.TraktShow.Ids.Trakt.ToString(), 1 ) );
             }
 
             // Lita de Restrições
             List<Restriction> v_re = new List<Restriction>();
 
             // Tempo de cada episódio
-            var v_listaTempos = new List<R>(
+            var v_listaTempos = new List<Tuple<string, double>>(
                 from item in g_Model.ListShow
-                select new R {
-                    Item1 = item.TraktShow.Ids.Trakt.ToString(),
-                    Item2 = item.TraktShow.Runtime ?? int.MaxValue
-                }
+                select new Tuple<string, double>(
+                    item.TraktShow.Ids.Trakt.ToString(),
+                    item.TraktShow.Runtime ?? int.MaxValue
+                )
             );
-            v_listaTempos.Insert( 0, new R { Item1 = "", Item2 = tempo } );
+            v_listaTempos.Insert( 0, new Tuple<string, double>( "", tempo ) );
             v_re.Add( new Restriction {
                 Type = Restriction.FuncType.LessEqual,
                 R = v_listaTempos
             } );
 
             // Pausas a cada episodio
-            var v_listaPausas = new List<R>(
+            var v_listaPausas = new List<Tuple<string, double>>(
                     from item in g_Model.ListShow
-                    select new R {
-                        Item1 = item.TraktShow.Ids.Trakt.ToString(),
-                        Item2 = item.TempoPausa
-                    }
+                    select new Tuple<string, double>(
+                        item.TraktShow.Ids.Trakt.ToString(),
+                        item.TempoPausa
+                        )
                 );
-            v_listaPausas.Insert( 0, new R { Item1 = "", Item2 = tempo } );
+            v_listaPausas.Insert( 0, new Tuple<string, double>( "", tempo ) );
             v_re.Add( new Restriction {
                 Type = Restriction.FuncType.LessEqual,
                 R = v_listaPausas
@@ -73,12 +73,11 @@ namespace Maratonei_xamarin.ViewModels {
 
             // Restrição de existencia
             for( var i = 0; i < g_Model.ListShow.Count; i++ ) {
-                var v_listaExistencia = new List<R>();
-                v_listaExistencia.Add( new R { Item1 = "", Item2 = 0 } );
-                v_listaExistencia.AddRange( g_Model.ListShow.Select( ( t, j ) => new R {
-                    Item1 = t.TraktShow.Ids.Trakt.ToString(),
-                    Item2 = i == j ? 1 : 0
-                } ) );
+                var v_listaExistencia = new List<Tuple<string, double>>();
+                v_listaExistencia.Add( new Tuple<string, double>( "", 0 ) );
+                v_listaExistencia.AddRange( g_Model.ListShow.Select( ( t, j ) => new Tuple<string, double>(
+                    t.TraktShow.Ids.Trakt.ToString(),
+                     i == j ? 1 : 0 ) ) );
                 v_re.Add( new Restriction {
                     Type = Restriction.FuncType.GreaterEqual,
                     R = v_listaExistencia
@@ -87,12 +86,12 @@ namespace Maratonei_xamarin.ViewModels {
 
             // Quant mínima de epi(s)
             for( var i = 0; i < g_Model.ListShow.Count; i++ ) {
-                var v_listaQuantMinEpis = new List<R>();
-                v_listaQuantMinEpis.Add( new R { Item1 = "", Item2 = g_Model.ListShow[i].MinimoEpisodios } );
-                v_listaQuantMinEpis.AddRange( g_Model.ListShow.Select( ( t, j ) => new R {
-                    Item1 = t.TraktShow.Ids.Trakt.ToString(),
-                    Item2 = i == j ? 1 : 0
-                } ) );
+                var v_listaQuantMinEpis = new List<Tuple<string, double>>();
+                v_listaQuantMinEpis.Add( new Tuple<string, double>( "", g_Model.ListShow[i].MinimoEpisodios ) );
+                v_listaQuantMinEpis.AddRange( g_Model.ListShow.Select( ( t, j ) => new Tuple<string, double>(
+                     t.TraktShow.Ids.Trakt.ToString(),
+                    i == j ? 1 : 0
+                ) ) );
                 v_re.Add( new Restriction {
                     Type = Restriction.FuncType.GreaterEqual,
                     R = v_listaQuantMinEpis
@@ -101,12 +100,12 @@ namespace Maratonei_xamarin.ViewModels {
 
             //Quant máxima de epi(s)
             for( var i = 0; i < g_Model.ListShow.Count; i++ ) {
-                var v_listaQuantMaxEpis = new List<R>();
-                v_listaQuantMaxEpis.Add( new R { Item1 = "", Item2 = g_Model.ListShow[i].TraktShow.AiredEpisodes ?? 0 } );
-                v_listaQuantMaxEpis.AddRange( g_Model.ListShow.Select( ( t, j ) => new R {
-                    Item1 = t.TraktShow.Ids.Trakt.ToString(),
-                    Item2 = i == j ? 1 : 0
-                } ) );
+                var v_listaQuantMaxEpis = new List<Tuple<string, double>>();
+                v_listaQuantMaxEpis.Add( new Tuple<string, double>( "", g_Model.ListShow[i].TraktShow.AiredEpisodes ?? 0 ) );
+                v_listaQuantMaxEpis.AddRange( g_Model.ListShow.Select( ( t, j ) => new Tuple<string, double>(
+                       t.TraktShow.Ids.Trakt.ToString(),
+                       i == j ? 1 : 0
+                  ) ) );
                 v_re.Add( new Restriction {
                     Type = Restriction.FuncType.LessEqual,
                     R = v_listaQuantMaxEpis
