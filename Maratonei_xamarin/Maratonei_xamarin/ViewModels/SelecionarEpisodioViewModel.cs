@@ -11,7 +11,7 @@ using TraktApiSharp.Objects.Get.Shows.Seasons;
 using TraktApiSharp.Requests.Params;
 
 namespace Maratonei_xamarin.ViewModels {
-    public partial class SelecionarEpisodioViewModel {
+    public partial class SelecionarEpisodioViewModel : BaseViewModel{
         public ItemSelecionarTemporada g_TraktSeason { get; set; }
         public TraktShow g_TraktSHow { get; set; }
         public ObservableCollection<ItemSelecionarEpisodio> g_EpisodesList { get; set; }
@@ -22,13 +22,16 @@ namespace Maratonei_xamarin.ViewModels {
             GetEpisodes();
         }
 
-        private async void GetEpisodes() {
+        private async void GetEpisodes()
+        {
+            IsBusy = true;
             if( g_TraktSeason.Season.Number != null ) {
                 var episodes = await APIs.Instance.MainTraktClient.Seasons.GetSeasonAsync( g_TraktSHow.Ids.Trakt.ToString(), (int) g_TraktSeason.Season.Number, new TraktExtendedInfo { Episodes = true } );
                 foreach( var traktEpisode in episodes ) {
                     g_EpisodesList.Add( new ItemSelecionarEpisodio() { Episode = traktEpisode, Selecionado = g_TraktSeason.Selecionado } );
                 }
             }
+            IsBusy = false;
         }
 
         public void SelecionarTudo()

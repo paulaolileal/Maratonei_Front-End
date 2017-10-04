@@ -70,9 +70,16 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <Grid Opacity="0.8" BackgroundColor="DimGray" IsVisible="{Binding InLoading}">
-                <ActivityIndicator IsRunning="true" HeightRequest="50" />
-            </Grid>
+            <ContentView x:Name="actInBackground"
+                         BackgroundColor="#222222" Opacity="0.5"
+                         IsVisible="{Binding InLoading}"/>
+            <ActivityIndicator x:Name="actInd"
+                               IsRunning="{Binding InLoading}"
+                               IsVisible="{Binding InLoading}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

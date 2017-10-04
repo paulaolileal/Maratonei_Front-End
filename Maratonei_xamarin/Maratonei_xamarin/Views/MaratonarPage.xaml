@@ -4,18 +4,23 @@
              x:Class="Maratonei_xamarin.Views.MaratonarPage"
              xmlns:customControls="clr-namespace:Maratonei_xamarin.Custom_Controls;assembly=Maratonei_xamarin">
     <ContentPage.Content>
-        <ScrollView>
+        <Grid>
             <StackLayout>
 
-                <Grid  BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                    <StackLayout Margin="36" HorizontalOptions="CenterAndExpand">
+                <Grid  BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout Margin="24" HorizontalOptions="CenterAndExpand">
                         <Label Text="Tempo disponível"></Label>
-                        <StackLayout Orientation="Horizontal">
-                            <Entry Text="{Binding g_Model.HoraTotal}" Keyboard="Numeric" Placeholder="TempoPausa disponível" TextChanged="Entry_OnTextChanged"/>
-                            <Label Text="h" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
-                            <Entry Text="{Binding g_Model.MinutoTotal}" Keyboard="Numeric" Placeholder="TempoPausa disponível" TextChanged="Entry_OnTextChanged"/>
-                            <Label Text="min" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <StackLayout Orientation="Horizontal">
+                                <Entry Text="{Binding g_Model.HoraTotal}" Keyboard="Numeric" TextChanged="Entry_OnTextChanged" WidthRequest="30"/>
+                                <Label Text="h" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Entry Text="{Binding g_Model.MinutoTotal}" Keyboard="Numeric" TextChanged="Entry_OnTextChanged" WidthRequest="30"/>
+                                <Label Text="min" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
+                            </StackLayout>
                         </StackLayout>
+                        
                         <Button Text="MARATONAR" HorizontalOptions="CenterAndExpand" Clicked="Button_Maratonar_OnClicked"/>
                     </StackLayout>
                 </Grid>
@@ -61,11 +66,11 @@
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal" Grid.Row="5" Margin="0" Padding="0">
                                             <Label Text="Quantidade mínima:" VerticalOptions="Center"  Style="{StaticResource SimpleLabel}"/>
-                                            <Entry Text="{Binding MinimoEpisodios}" VerticalOptions="Center" MinimumWidthRequest="30"/>
+                                            <Entry Text="{Binding MinimoEpisodios}" VerticalOptions="Center" WidthRequest="30" TextChanged="Entry_OnTextChanged"  Keyboard="Numeric"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal" Grid.Row="4" Margin="0" Padding="0">
                                             <Label Text="Intervalo entre episódios: " Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
-                                            <Entry Text="{Binding TempoPausa}" VerticalOptions="Center" MinimumWidthRequest="30"/>
+                                            <Entry Text="{Binding TempoPausa}" VerticalOptions="Center"  WidthRequest="30" TextChanged="Entry_OnTextChanged"  Keyboard="Numeric"/>
                                             <Label Text="min" Style="{StaticResource SimpleLabel}" VerticalOptions="Center"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal" Grid.Row="6" Margin="0" Padding="0">
@@ -86,6 +91,18 @@
                 </ListView>
 
             </StackLayout>
-        </ScrollView>
+            <ContentView x:Name="actInBackground"
+                         BackgroundColor="#222222" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsBusy}"/>
+            <ActivityIndicator x:Name="actInd"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

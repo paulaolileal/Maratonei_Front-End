@@ -8,7 +8,7 @@
         <ToolbarItem Text="Ok" Clicked="Button_OnClicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
             <!--<Grid>
                 <customControls:FlatButton BorderColor="Transparent"
                         BackgroundColor="Transparent"
@@ -46,6 +46,18 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+            <ContentView x:Name="actInBackground"
+                         BackgroundColor="#222222" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsBusy}"/>
+            <ActivityIndicator x:Name="actInd"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

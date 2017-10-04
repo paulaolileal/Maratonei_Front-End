@@ -39,7 +39,7 @@ namespace Maratonei_xamarin.ViewModels {
 
             foreach( var item in result )
             {
-                var img = await APIs.Instance.PegarImagem(item.Show.Ids.Tvdb);
+               ////// var img = await APIs.Instance.PegarImagem(item.Show.Ids.Tvdb);
                 //    "no_image.png";
                 //if( item.Show.Ids.Tvdb != null ) {
                 //    try {
@@ -59,7 +59,7 @@ namespace Maratonei_xamarin.ViewModels {
 
                 g_SearchResult.Add(
                     new ItemSearchShow() {
-                        ShowImage = img,
+                        /////ShowImage = img,
                         TraktSearchResult = item.Show
                     }
                 );

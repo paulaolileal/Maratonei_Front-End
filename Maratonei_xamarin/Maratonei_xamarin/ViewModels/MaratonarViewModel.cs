@@ -115,7 +115,9 @@ namespace Maratonei_xamarin.ViewModels {
             return new Requisicao { ObjectiveFunction = v_ob, Restrictions = v_re };
         }
 
-        public async Task Maratonar() {
+        public async Task<ObjectiveFunction> Maratonar()
+        {
+            IsBusy = true;
             var v_req = CriarRequisicao();
             var v_JReq = JsonConvert.SerializeObject( v_req );
             var v_HttpClient = new HttpClient();
@@ -129,7 +131,8 @@ namespace Maratonei_xamarin.ViewModels {
             if( v_Response.IsSuccessStatusCode ) {
                 v_stringResp = await v_Response.Content.ReadAsStringAsync();
             }
-            ObjectiveFunction v_solucao = JsonConvert.DeserializeObject<ObjectiveFunction>( v_stringResp );
+            IsBusy = false;
+            return JsonConvert.DeserializeObject<ObjectiveFunction>( v_stringResp );
         }
     }
 }

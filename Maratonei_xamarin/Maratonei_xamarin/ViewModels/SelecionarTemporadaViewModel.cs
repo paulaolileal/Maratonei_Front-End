@@ -24,12 +24,16 @@ namespace Maratonei_xamarin.ViewModels {
         }
 
         public async void BuscarSerie( string id ) {
+            IsBusy = true;
+
             var show = await APIs.Instance.MainTraktClient.Shows.GetShowAsync( id, new TraktExtendedInfo { Full = true } );
             g_TraktSHow.TraktSearchResult = show;
             var seasons = await APIs.Instance.MainTraktClient.Seasons.GetAllSeasonsAsync( show.Ids.Trakt.ToString(), new TraktExtendedInfo { Full = true } );
             foreach( var traktSeason in seasons ) {
                 g_SeasonsList.Add( new ItemSelecionarTemporada { Season = traktSeason } );
             }
+
+            IsBusy = false;
 
         }
 
