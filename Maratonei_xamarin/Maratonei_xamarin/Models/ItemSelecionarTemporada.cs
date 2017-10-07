@@ -7,21 +7,28 @@ namespace Maratonei_xamarin.Models {
         private TraktSeason _season;
         private List<TraktEpisode> _episodes;
         private bool _selecionado;
+        private int _episodiosSelecionados;
 
         public TraktSeason Season {
-            get { return _season; }
-            set { SetProperty( ref _season, value ); }
+            get => _season;
+            set => SetProperty( ref _season, value );
         }
 
         public bool Selecionado {
-            get { return _selecionado; }
-            set { SetProperty( ref _selecionado, value ); }
+            get => _selecionado;
+            set => SetProperty( ref _selecionado, value );
         }
 
         public List<TraktEpisode> Episodes
         {
-            get { return _episodes; }
-            set { SetProperty(ref _episodes, value); }
+            get => _episodes;
+            set => SetProperty(ref _episodes, value);
+        }
+
+        public int EpisodiosSelecionados
+        {
+            get => _episodiosSelecionados;
+            set => SetProperty(ref _episodiosSelecionados, value);
         }
     }
 }
