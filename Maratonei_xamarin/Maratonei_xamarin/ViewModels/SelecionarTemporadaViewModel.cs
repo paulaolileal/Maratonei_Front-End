@@ -38,9 +38,12 @@ namespace Maratonei_xamarin.ViewModels {
         }
 
         internal void atualizarTemporada( ItemSelecionarTemporada selectedSeason, List<TraktEpisode> list ) {
-            if( list.Count == selectedSeason.Season.TotalEpisodesCount ) {
+            if (list.Count == selectedSeason.Season.TotalEpisodesCount)
+            {
                 selectedSeason.Selecionado = true;
             }
+            selectedSeason.Episodes = list;
+            selectedSeason.EpisodiosSelecionados = list.Count;
         }
     }
 }

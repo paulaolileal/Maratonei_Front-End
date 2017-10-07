@@ -58,13 +58,15 @@
                                     <Switch Grid.Column="1" Toggled="Switch_OnToggled" IsToggled="{Binding Selecionado}"/>
                                     <StackLayout Orientation="Vertical" Grid.Column="0">
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="TempoPausarada " VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"></Label>
-                                            <Label Text="{Binding Season.Number}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"></Label>
+                                            <Label Text="Temporada " VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"/>
+                                            <Label Text="{Binding Season.Number}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"/>
                                         </StackLayout>
-                                        
+
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding Season.TotalEpisodesCount}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
-                                            <Label Text=" Episódios" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                            <Label Text=" Episódios - " Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                            <Label Text="{Binding EpisodiosSelecionados}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                            <Label Text=" Selecionados " Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
                                         </StackLayout>
                                         
                                     </StackLayout>
