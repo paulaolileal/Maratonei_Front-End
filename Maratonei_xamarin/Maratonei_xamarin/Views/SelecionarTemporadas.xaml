@@ -58,7 +58,7 @@
                                     <Switch Grid.Column="1" Toggled="Switch_OnToggled" IsToggled="{Binding Selecionado}"/>
                                     <StackLayout Orientation="Vertical" Grid.Column="0">
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="Temporada " VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"/>
+                                            <Label Text="Totalrada " VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"/>
                                             <Label Text="{Binding Season.Number}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}"/>
                                         </StackLayout>
 

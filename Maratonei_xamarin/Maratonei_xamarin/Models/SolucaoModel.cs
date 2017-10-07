@@ -10,7 +10,7 @@ namespace Maratonei_xamarin.Models {
         private double _solucao;
         public double Solucao
         {
-            get => _solucao;
+            get => Math.Round( _solucao, 2 );
             set => SetProperty(ref _solucao, value);
         }
 

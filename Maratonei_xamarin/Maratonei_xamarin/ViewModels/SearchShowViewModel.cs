@@ -17,29 +17,28 @@ namespace Maratonei_xamarin.ViewModels {
         public List<TraktShow> g_listaSelecionados = new List<TraktShow>();
 
         private bool g_InLoading;
-        public bool InLoading
-        {
+        public bool InLoading {
             get { return g_InLoading; }
             set { SetProperty( ref g_InLoading, value ); }
         }
-        
+
         public SearchShowViewModel() {
             g_SearchResult = new ObservableCollection<ItemSearchShow>();
         }
 
-        public async void Search( string p_Param )
-        {
+        public async void Search( string p_Param ) {
             InLoading = true;
 
-            var result = await APIs.Instance.MainTraktClient.Search.GetTextQueryResultsAsync(
-                TraktApiSharp.Enums.TraktSearchResultType.Show,
-                p_Param.Replace( " ", "-" ),
-                extendedInfo: new TraktExtendedInfo() { Full = true }
-                );
+            g_SearchResult.Clear();
 
-            foreach( var item in result )
-            {
-               ////// var img = await APIs.Instance.PegarImagem(item.Show.Ids.Tvdb);
+            var result = await APIs.Instance.MainTraktClient.Search.GetTextQueryResultsAsync(
+                 TraktApiSharp.Enums.TraktSearchResultType.Show,
+                 p_Param.Replace( " ", "-" ),
+                 extendedInfo: new TraktExtendedInfo() { Full = true }
+                 );
+
+            foreach( var item in result ) {
+                ////// var img = await APIs.Instance.PegarImagem(item.Show.Ids.Tvdb);
                 //    "no_image.png";
                 //if( item.Show.Ids.Tvdb != null ) {
                 //    try {
@@ -66,6 +65,6 @@ namespace Maratonei_xamarin.ViewModels {
             }
             InLoading = false;
         }
-        
+
     }
 }

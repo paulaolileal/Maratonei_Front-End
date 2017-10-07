@@ -43,7 +43,7 @@ namespace Maratonei_xamarin.ViewModels {
             // Lita de Restrições
             List<Restriction> v_re = new List<Restriction>();
 
-            // Tempo de cada episódio
+            // Total de cada episódio
             var v_listaTempos = new List<Tuple<string, double>>(
                 from item in g_Model.ListShow
                 select new Tuple<string, double>(
@@ -101,7 +101,7 @@ namespace Maratonei_xamarin.ViewModels {
             //Quant máxima de epi(s)
             for( var i = 0; i < g_Model.ListShow.Count; i++ ) {
                 var v_listaQuantMaxEpis = new List<Tuple<string, double>>();
-                v_listaQuantMaxEpis.Add( new Tuple<string, double>( "", g_Model.ListShow[i].TraktShow.AiredEpisodes ?? 0 ) );
+                v_listaQuantMaxEpis.Add(new Tuple<string, double>("", g_Model.ListShow[i].EpisodiosSelecionados));//.TraktShow.AiredEpisodes ?? 0 ) );
                 v_listaQuantMaxEpis.AddRange( g_Model.ListShow.Select( ( t, j ) => new Tuple<string, double>(
                        t.TraktShow.Ids.Trakt.ToString(),
                        i == j ? 1 : 0

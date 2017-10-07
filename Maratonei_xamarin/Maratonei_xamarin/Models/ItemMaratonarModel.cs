@@ -64,7 +64,7 @@ namespace Maratonei_xamarin.Models {
                         valor += itemSelecionarTemporada.Season.TotalEpisodesCount ?? 0;
                     }
                     else {
-                        valor += itemSelecionarTemporada.Episodes.Count;
+                        valor += itemSelecionarTemporada.EpisodiosSelecionados;
                     }
                 }
                 this.EpisodiosSelecionados = valor;

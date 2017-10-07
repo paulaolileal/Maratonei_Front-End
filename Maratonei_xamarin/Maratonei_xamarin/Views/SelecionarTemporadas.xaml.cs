@@ -26,7 +26,6 @@ namespace Maratonei_xamarin.Views {
             var selectedSeason = ( (ListView) sender ).SelectedItem as ItemSelecionarTemporada;
             var page = new SelecionarEpisodio( viewModel.g_TraktSHow.TraktSearchResult, selectedSeason );
             page.ItensSelecioncados += ( o, list ) => {
-                selectedSeason.Episodes = list;
 
                 var s = list.Aggregate( "", ( current, traktEpisode ) => current + traktEpisode.Number + ", " );
                 var toastConfig = new ToastConfig( "Selecionados Episodios : " + s );
@@ -35,7 +34,7 @@ namespace Maratonei_xamarin.Views {
 
                 UserDialogs.Instance.Toast( toastConfig );
 
-                viewModel.atualizarTemporada( selectedSeason, list );
+                viewModel.AtualizarTemporada( selectedSeason, list );
             };
             Device.BeginInvokeOnMainThread( async () => {
                 await Navigation.PushModalAsync( new NavigationPage( page ) );
@@ -50,10 +49,14 @@ namespace Maratonei_xamarin.Views {
         private void Switch_OnToggled( object sender, ToggledEventArgs e ) {
             var v_switch = sender as Switch;
             var v_item = v_switch.BindingContext as ItemSelecionarTemporada;
-            if( v_item.Season.TotalEpisodesCount != null ) {
-                v_item.EpisodiosSelecionados = (int) v_item.Season.TotalEpisodesCount;
+            if( v_item.Selecionado ) {
+                if( v_item.Season.TotalEpisodesCount != null ) {
+                    v_item.EpisodiosSelecionados = (int) v_item.Season.TotalEpisodesCount;
+                }
             }
-
+            else {
+                v_item.EpisodiosSelecionados = 0;
+            }
         }
     }
 }

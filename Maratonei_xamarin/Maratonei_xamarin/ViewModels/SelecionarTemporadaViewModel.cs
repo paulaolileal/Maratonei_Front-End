@@ -18,7 +18,7 @@ namespace Maratonei_xamarin.ViewModels {
         public ObservableCollection<ItemSelecionarTemporada> g_SeasonsList { get; set; }
         public ItemSearchShow g_TraktSHow = new ItemSearchShow();
 
-        public SelecionarTemporadaViewModel(uint idsTrakt) {
+        public SelecionarTemporadaViewModel( uint idsTrakt ) {
             g_SeasonsList = new ObservableCollection<ItemSelecionarTemporada>();
             BuscarSerie( idsTrakt.ToString() );
         }
@@ -37,11 +37,9 @@ namespace Maratonei_xamarin.ViewModels {
 
         }
 
-        internal void atualizarTemporada( ItemSelecionarTemporada selectedSeason, List<TraktEpisode> list ) {
-            if (list.Count == selectedSeason.Season.TotalEpisodesCount)
-            {
-                selectedSeason.Selecionado = true;
-            }
+        internal void AtualizarTemporada( ItemSelecionarTemporada selectedSeason, List<TraktEpisode> list ) {
+            selectedSeason.Selecionado = list.Count == selectedSeason.Season.TotalEpisodesCount;
+
             selectedSeason.Episodes = list;
             selectedSeason.EpisodiosSelecionados = list.Count;
         }

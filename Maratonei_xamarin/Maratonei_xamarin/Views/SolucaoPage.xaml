@@ -3,34 +3,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maratonei_xamarin.Views.SolucaoPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding g_SolucaoList}"
-                          HasUnevenRows="true"
-                          CachingStrategy="RecycleElement">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="8" Margin="0, 0, 0, 10" RowSpacing="0.1">
+        <Grid>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="68"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label Text="Sua Solução é" HorizontalOptions="Center" Grid.Row="0"/>
+            <Label Text="{Binding TipoSolucao}" HorizontalOptions="Center" Grid.Row="1"/>
+            <Label Text="{Binding MensagemSolucao}" HorizontalOptions="Center" Grid.Row="2"/>
 
-                                <Label Text="{Binding Show.Title}" Style="{DynamicResource ListItemTextStyle}" Margin="0" HorizontalOptions="Center"/>
-                                <Label Text="{Binding Solucao}" Style="{StaticResource SimpleLabel}" HorizontalOptions="Center" FontSize="36"/>
-                                <Label Text="Episodios" Style="{StaticResource SimpleLabel}" HorizontalOptions="Center"/>
+            <Grid HorizontalOptions="Center" Grid.Row="4" Margin="6">
+                <Label Text="{Binding Sugestao}" Style="{StaticResource SimpleLabel}" TextColor="DarkGray"/>
+            </Grid>
+            
+            <!--<Grid Grid.Row="4" Margin="8">
+                <ListView  HorizontalOptions="Center"
+                          ItemsSource="{Binding Sugestao}"
+                          VerticalOptions="Center"
+                           HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding}" Style="{StaticResource SimpleLabel}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>-->
 
-                            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="3">
+                <Label Text="Total de episódios" HorizontalOptions="Center"/>
+                <Label Text="{Binding Total}" HorizontalOptions="Center"/>
+            </StackLayout>
 
-                            <Frame Grid.Column="0" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
-                                <Image Source="{Binding ShowImage}" Aspect="AspectFill" Margin="0"/>
-                            </Frame>
+            <ListView ItemsSource="{Binding g_SolucaoList}"
+                      HasUnevenRows="true"
+                      CachingStrategy="RecycleElement"
+                      Grid.Row="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="8" Margin="0, 0, 0, 10" RowSpacing="0.1">
 
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="68"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+
+                                    <Label Text="{Binding Show.Title}" Style="{DynamicResource ListItemTextStyle}" Margin="0" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Solucao}" Style="{StaticResource SimpleLabel}" HorizontalOptions="Center" FontSize="36"/>
+                                    <Label Text="Episodios" Style="{StaticResource SimpleLabel}" HorizontalOptions="Center"/>
+
+                                </StackLayout>
+
+                                <Frame Grid.Column="0" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
+                                    <Image Source="{Binding ShowImage}" Aspect="AspectFill" Margin="0"/>
+                                </Frame>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
