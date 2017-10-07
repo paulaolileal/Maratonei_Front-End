@@ -1,4 +1,5 @@
 ﻿using DLToolkit.Forms.Controls;
+using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Services;
 using Maratonei_xamarin.Views;
 
@@ -24,7 +25,7 @@ namespace Maratonei_xamarin {
             InitApis();
 
             //Current.MainPage = new MasterDetailPage1();
-            Current.MainPage = new NavigationPage( new LoginPage());
+            Current.MainPage = new NavigationPage( new LoginPage()) {BackgroundColor = Colors.NavbarColor};
             //Current.MainPage = new MasterDetailPage1();
             //    new TabbedPage {
             //    Children =

@@ -4,14 +4,6 @@
              xmlns:customControls="clr-namespace:Maratonei_xamarin.Custom_Controls;assembly=Maratonei_xamarin"
              x:Class="Maratonei_xamarin.Views.LoginPage"
              BackgroundColor="#0F0F0F">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry">
-                    <Setter Property="PlaceholderColor" Value="LightGray"/>
-                    <Setter Property="TextColor" Value="Black"/>
-                </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
@@ -25,7 +17,7 @@
                         <Button VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#4a648e" Text="Acessar o Maratonei" TextColor="#f2f2f2" Clicked="LoginButton_OnClicked"/>
                     </StackLayout>
                 </Frame>
-                <customControls:FlatButton BackgroundColor="#0F0F0F" TextColor="#f2f2f2" Text="Esqueci minha senha"/>
+                <!--<customControls:FlatButton BackgroundColor="#0F0F0F" TextColor="#f2f2f2" Text="Esqueci minha senha"/>-->
                 <customControls:FlatButton BackgroundColor="#0F0F0F" TextColor="#f2f2f2" Text="Ainda não possui uma conta?" Clicked="RegisterButton_OnClicked"/>
             </StackLayout>
             <ContentView x:Name="actInBackground"
@@ -36,8 +28,8 @@
             <ActivityIndicator x:Name="actInd"
                                AbsoluteLayout.LayoutFlags="PositionProportional"
                                AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
-                               IsRunning="{Binding g_LoginViewModel.IsBusy}"
-                               IsVisible="{Binding g_LoginViewModel.IsBusy}"/>
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

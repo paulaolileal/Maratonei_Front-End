@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
 using Maratonei_xamarin.ViewModels;
 using Newtonsoft.Json;
@@ -23,57 +24,83 @@ namespace Maratonei_xamarin.Views
             BindingContext = g_LoginViewModel = new LoginViewModel();
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (!g_LoginViewModel.CheckNetworkStatus())
+            {
+                await DisplayAlert("Nenhuma conexão encontrada", "Não foi encontrada nenhuma conexão com a internet.",
+                    "Ok");
+            }
+        }
+
         private async void LoginButton_OnClicked(object sender, EventArgs e)
         {
             g_LoginViewModel.IsBusy = true;
-            if (!String.IsNullOrEmpty(g_UserEntry.Text) && !String.IsNullOrEmpty(g_PasswordEntry.Text))
+            if (g_LoginViewModel.NetworkStatus)
             {
-                User v_User = new User()
+                if (!String.IsNullOrEmpty(g_UserEntry.Text) && !String.IsNullOrEmpty(g_PasswordEntry.Text))
                 {
-                    Nome = g_UserEntry.Text,
-                    Senha = g_PasswordEntry.Text
-                };
+                    User v_User = new User()
+                    {
+                        Nome = g_UserEntry.Text,
+                        Senha = g_PasswordEntry.Text
+                    };
 
-                try
-                {
-                    var v_ResultLogin = await g_LoginViewModel.AutenticaUsuario(v_User);
-                    if (string.IsNullOrEmpty(v_ResultLogin))
+                    try
                     {
-                        await DisplayAlert("Falha na autenticação", "Usuário e/ou senha errados", "Tentar novamente");
-                    }
-                    else
-                    {
-                        v_User = JsonConvert.DeserializeObject<User>(v_ResultLogin);
-                        v_User.EstaLogado = true;
-                        g_LoginViewModel.ArmazenaUsuarioLocal(v_User);
-                        
-                        Device.BeginInvokeOnMainThread(async () =>
+                        var v_ResultLogin = await g_LoginViewModel.AutenticaUsuario(v_User);
+                        if (string.IsNullOrEmpty(v_ResultLogin))
                         {
-                            await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
-                        });
+                            await DisplayAlert("Falha na autenticação", "Usuário e/ou senha errados", "Tentar novamente");
+                        }
+                        else
+                        {
+                            v_User = JsonConvert.DeserializeObject<User>(v_ResultLogin);
+                            v_User.EstaLogado = true;
+                            g_LoginViewModel.ArmazenaUsuarioLocal(v_User);
+
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Erro",
+                            "Ocorreu uma exceção não prevista ao tentar realizar o login, favor contactar os desenvolvedores informando esta mensagem: " + ex.Message,
+                            "Ok");
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    await DisplayAlert("Erro",
-                        "Ocorreu uma exceção não prevista ao tentar realizar o login, favor contactar os desenvolvedores informando esta mensagem: " + ex.Message,
-                        "Ok");
-                }
+                    await DisplayAlert("Erro", "Usuário ou senha não preenchidos", "Ok");
+                } 
             }
             else
             {
-                await DisplayAlert("Erro", "Usuário ou senha não preenchidos", "Ok");
+                await DisplayAlert("Nenhuma conexão encontrada", "Não foi encontrada nenhuma conexão com a internet.",
+                    "Ok");
             }
             g_LoginViewModel.IsBusy = false;
         }
 
         private async void RegisterButton_OnClicked(object sender, EventArgs e)
         {
-            var v_RegisterPage = new RegisterPage();
-            Device.BeginInvokeOnMainThread(async () =>
+            if (g_LoginViewModel.NetworkStatus)
             {
-                await Navigation.PushAsync(new NavigationPage(v_RegisterPage));
-            });
+                var v_RegisterPage = new RegisterPage();
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PushAsync(new NavigationPage(v_RegisterPage) { BarBackgroundColor = Colors.NavbarColor });
+                }); 
+            }
+            else
+            {
+                await DisplayAlert("Nenhuma conexão encontrada", "Não foi encontrada nenhuma conexão com a internet.",
+                    "Ok");
+            }
         }
     }
 }
