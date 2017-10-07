@@ -11,6 +11,7 @@ using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plugin.Connectivity;
 
 namespace Maratonei_xamarin.ViewModels
 {
@@ -30,6 +31,12 @@ namespace Maratonei_xamarin.ViewModels
                 RaisePropertyChanged("IsBusy");
             }
         }
+
+        public bool NetworkStatus
+        {
+            get { return CrossConnectivity.Current.IsConnected; }
+        }
+
         public void RaisePropertyChanged(string property)
         {
             if (PropertyChanged != null)
@@ -74,6 +81,11 @@ namespace Maratonei_xamarin.ViewModels
         {
             var v_UserDAO = new UserDAO();
             v_UserDAO.InsertUser(p_User);
+        }
+
+        public bool CheckNetworkStatus()
+        {
+            return CrossConnectivity.Current.IsConnected;
         }
     }
 }
