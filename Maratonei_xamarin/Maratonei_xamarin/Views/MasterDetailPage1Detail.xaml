@@ -6,17 +6,27 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="Maratonei_xamarin.Views.MasterDetailPage1Detail"
              Title="Detail">
-    <StackLayout Padding="10" Orientation="Vertical">
-        <Image x:Name="ggi" Source="{local:ImageResource Maratonei_xamarin.check.png}" WidthRequest="100" HeightRequest="100"/>
-        <Label x:Name="labelp" Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it."/>
+    <Grid>
         <flv:FlowListView x:Name="lista" FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="true" FlowItemTapped="lista_ItemTapped" >
 
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding}" WidthRequest="100 "/>
+                    <Image Source="{Binding}" MinimumWidthRequest="100"/>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
 
         </flv:FlowListView>
-    </StackLayout>
+        <ContentView x:Name="actInBackground"
+                     BackgroundColor="#222222" Opacity="0.5"
+                     AbsoluteLayout.LayoutFlags="All"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     IsVisible="{Binding IsBusy}"/>
+        <ActivityIndicator x:Name="actInd"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"/>
+    </Grid>
 </ContentPage>

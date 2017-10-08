@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Maratonei_xamarin.Data_Storage;
 using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
+using Maratonei_xamarin.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plugin.Connectivity;
@@ -68,6 +69,7 @@ namespace Maratonei_xamarin.ViewModels
                     v_ReturnString = await v_Response.Content.ReadAsStringAsync();
 
                 }
+                APIs.Instance.User = JsonConvert.DeserializeObject<User>(v_ReturnString);
                 return v_ReturnString;
             }
             catch (Exception e)
