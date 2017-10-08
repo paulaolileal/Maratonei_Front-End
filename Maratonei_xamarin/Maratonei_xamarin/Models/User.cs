@@ -21,5 +21,9 @@ namespace Maratonei_xamarin.Models {
         public string TraktUser { get; set; }
         [JsonIgnore]
         public bool EstaLogado { get; set; }
+
+        public User()
+        {
+        }
     }
 }

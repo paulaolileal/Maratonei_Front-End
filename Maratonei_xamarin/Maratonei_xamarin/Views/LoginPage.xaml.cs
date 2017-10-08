@@ -62,7 +62,7 @@ namespace Maratonei_xamarin.Views
 
                             Device.BeginInvokeOnMainThread(async () =>
                             {
-                                await Navigation.PushModalAsync(new MasterDetailPage1(v_User));
+                                await Navigation.PushModalAsync( new MasterDetailPage1(v_User));
                             });
                         }
                     }

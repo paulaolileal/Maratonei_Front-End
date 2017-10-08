@@ -50,19 +50,17 @@ namespace Maratonei_xamarin.ViewModels
         {
             try
             {
-                dynamic v_User = new ExpandoObject();
-                v_User.nome = p_User.Nome;
-                v_User.senha = p_User.Senha;
-                var v_UserJson = JsonConvert.SerializeObject(v_User);
-                var v_HttpClient = new HttpClient();
-                var v_RequestUri = new Uri(RequestURLs.LoginURL);
-                var v_Request = new HttpRequestMessage()
+                var v_Login = new UserLogin {nome = p_User.Nome, senha = p_User.Senha};
+                string v_UserJson = JsonConvert.SerializeObject( v_Login );
+                HttpClient v_HttpClient = new HttpClient();
+                Uri v_RequestUri = new Uri(RequestURLs.LoginURL);
+                HttpRequestMessage v_Request = new HttpRequestMessage()
                 {
                     RequestUri = v_RequestUri,
                     Method = HttpMethod.Post,
                     Content = new StringContent(v_UserJson, Encoding.UTF8, "application/json")
                 };
-                var v_Response = await v_HttpClient.SendAsync(v_Request);
+                HttpResponseMessage v_Response = await v_HttpClient.SendAsync(v_Request);
                 string v_ReturnString = "";
                 if (v_Response.IsSuccessStatusCode)
                 {

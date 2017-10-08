@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Maratonei_xamarin.Data_Storage;
 using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
+using Maratonei_xamarin.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktApiSharp;
@@ -65,13 +66,8 @@ namespace Maratonei_xamarin.ViewModels
         {
             var v_ResultCadastro = "";
             var v_HttpClient = new HttpClient();
-            dynamic v_UserJsonObj = new ExpandoObject();
 
-            v_UserJsonObj.nome = p_User.Nome;
-            v_UserJsonObj.senha = p_User.Senha;
-            v_UserJsonObj.traktUser = p_User.TraktUser;
-
-            var v_UserJsonString = JsonConvert.SerializeObject(v_UserJsonObj);
+            var v_UserJsonString = JsonConvert.SerializeObject( p_User );
             var v_RequestUri = new Uri(RequestURLs.RegisterUserURL);
 
             try
@@ -88,6 +84,7 @@ namespace Maratonei_xamarin.ViewModels
                 {
                     v_ResultCadastro = await v_Response.Content.ReadAsStringAsync();
                 }
+                APIs.Instance.User = p_User;
             }
             catch (Exception e)
             {
