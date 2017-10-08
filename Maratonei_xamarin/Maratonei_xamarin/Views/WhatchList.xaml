@@ -1,26 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Maratonei_xamarin.Views.SearchShows">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="SimpleLabel" TargetType="Label">
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="TextColor" Value="DarkGray"/>
-            </Style>
-        </ResourceDictionary>
-
-    </ContentPage.Resources>
+             x:Class="Maratonei_xamarin.Views.WhatchList">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="MARATONAR" Clicked="MenuItem_OnClicked"/> 
+        <ToolbarItem Text="MARATONAR" Clicked="MenuItem_OnClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
             <StackLayout>
-                <SearchBar x:Name="search_bar_shows" HorizontalOptions="Fill" SearchButtonPressed="search_bar_shows_SearchButtonPressed" />
+                
                 <ListView x:Name="list_view_search_shows" 
-                          ItemsSource="{Binding g_SearchResult}"
+                          ItemsSource="{Binding Items}"
                           VerticalOptions="FillAndExpand"
                           HasUnevenRows="true">
                     <ListView.ItemTemplate>
@@ -58,9 +48,9 @@
                                     </Grid>
 
                                     <Frame Grid.Column="0" HeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
-                                        <Image Source="{Binding ShowImage}" Aspect="AspectFill" Margin="0"/>     
+                                        <Image Source="{Binding ShowImage}" Aspect="AspectFill" Margin="0"/>
                                     </Frame>
-                                    
+
 
                                     <Button Text="Add" Grid.Column="2" Clicked="Button_OnClicked" VerticalOptions="Center"/>
 
@@ -72,16 +62,19 @@
             </StackLayout>
             <ContentView x:Name="actInBackground"
                          BackgroundColor="#222222" Opacity="0.5"
-                         IsVisible="{Binding InLoading}"/>
+                         IsVisible="{Binding IsBusy }"/>
             <ActivityIndicator x:Name="actInd"
-                               IsRunning="{Binding InLoading}"
-                               IsVisible="{Binding InLoading}"
+                               IsRunning="{Binding IsBusy }"
+                               IsVisible="{Binding IsBusy }"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
                                HeightRequest="50"
                                WidthRequest="50"/>
-            <Label Text="Nenhum resultado encontrado"  IsVisible="{Binding NadaEncontrado}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Pesquise as séries na barra de pesquisa acima"  IsVisible="{Binding NaoPesquisado}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout Orientation="Vertical" IsVisible="{Binding NadaEncontrado}" VerticalOptions="Center"  HorizontalOptions="CenterAndExpand">
+                <Label Text="Sua watchlist está vazia" HorizontalOptions="Center"  />
+                <Label Text="Entre na sua págia no Trakt e adiciones séries ou maratone pesquisando" HorizontalOptions="Center"/>
+            </StackLayout>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

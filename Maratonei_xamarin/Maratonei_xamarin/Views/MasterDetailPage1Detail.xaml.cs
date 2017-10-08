@@ -13,61 +13,48 @@ using TvDbSharper;
 using System.Collections.ObjectModel;
 using Maratonei_xamarin.Helpers;
 using DLToolkit.Forms.Controls;
+using Maratonei_xamarin.Services;
 
 namespace Maratonei_xamarin.Views {
     [XamlCompilation( XamlCompilationOptions.Compile )]
     public partial class MasterDetailPage1Detail : ContentPage {
-        TraktClient client;
-        TvDbClient tvclient;
-        ObservableCollection<string> Items = new ObservableCollection<string>();
+        // TraktClient client;
+        // TvDbClient tvclient;
+        public ObservableCollection<string> Items = new ObservableCollection<string>();
 
         public MasterDetailPage1Detail() {
             InitializeComponent();
+            BindingContext = this;
             lista.FlowItemsSource = Items;
-            //MainTraktClient = new TraktClient(
-            //    "291a8dd6ebf31265856c34b0fc6e9be0f81269e82de0f267e654bcfc6bf2a857",
-            //    "a4f0a9ebf050c37f95a3ee18fffc96aa33d5b188e6c526f81a5a1c2572384ff1"
-            //    );
-            //MainTvDbClient = new TvDbClient();
-            //MainTvDbClient.AcceptedLanguage = "en";
-            ////var embeddedImage = new Image { Source = ImageSource.FromResource( "Maratonei.check.png" ) };
-
-            ////ggi.Source = embeddedImage.Source;
-            //getTrends();
+            getTrends();
         }
-        public async void getTrends() {
+        public async void getTrends()
+        {
+            IsBusy = true;
+            var temp = new List<string>();
             try {
-                await tvclient.Authentication.AuthenticateAsync( "FEF236EED282A656" );
-                var trendingShowsTop10 = await client.Search.GetTextQueryResultsAsync(TraktApiSharp.Enums.TraktSearchResultType.Show, "the-big-bang-theory", extendedInfo: new TraktExtendedInfo() { Full = true} );//( new TraktExtendedInfo().SetFull(), null, 10 );
 
-                foreach( var trendingShow in trendingShowsTop10 ) {
+                var trendingShowsTop10 =
+                    await APIs.Instance.MainTraktClient.Shows.GetTrendingShowsAsync(
+                        new TraktExtendedInfo { Full = true } );
 
-                    var show = trendingShow.Show;
-                    var tv = await tvclient.Series.GetAsync( (int) show.Ids.Tvdb.Value );
-                    var i = await tvclient.Series.GetImagesAsync( (int) show.Ids.Tvdb.Value, new TvDbSharper.Dto.ImagesQuery() { KeyType = TvDbSharper.Dto.KeyType.Poster } );
-
-                    if(i.Data.Length > 0)
-                        Items.Add( i.Data[i.Data.Length-1].getImageUrl() );
-
-                   // labelp.Text = labelp.Text + "\n" + ( $"TraktShow: {show.Title} / Watchers: {trendingShow.Watchers}." );                   
-
+                foreach( var traktTrendingShow in trendingShowsTop10 ) {
+                    temp.Add( await APIs.Instance.PegarImagem( traktTrendingShow.Show.Ids.Tvdb ) );
                 }
+                foreach( var s in temp ) {
+                    Items.Add( s );
+                }
+
             }
             catch( Exception ex ) {
                 Debug.WriteLine( ex.StackTrace );
             }
+            IsBusy = false;
         }
 
         private void lista_ItemTapped( object sender, ItemTappedEventArgs e ) {
             var item = sender as FlowListView;
-            Debug.WriteLine( "aaaaaaaaaaaaaaaaaaaaaaaa: " + item.FlowLastTappedItem);
-            show( item.FlowLastTappedItem as string);
         }
-
-        public async void show(string m) {
-
-            var g = await DisplayAlert( "Selecionado", m, "ok", "cancelar");
-            Debug.WriteLine( g );
-        }
+        
     }
 }
