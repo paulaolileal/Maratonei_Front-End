@@ -68,6 +68,7 @@
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MaratonarViewModel.cs" />
+    <Compile Include="ViewModels\MasterDetailMasterViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SearchShowViewModel.cs" />
     <Compile Include="ViewModels\SelecionarTemporadaViewModel.cs" />
@@ -89,14 +90,14 @@
     <Compile Include="Views\MaratonarPage.xaml.cs">
       <DependentUpon>MaratonarPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailPage1.xaml.cs">
-      <DependentUpon>MasterDetailPage1.xaml</DependentUpon>
+    <Compile Include="Views\MasterDetailPage.xaml.cs">
+      <DependentUpon>MasterDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailPage1Detail.xaml.cs">
-      <DependentUpon>MasterDetailPage1Detail.xaml</DependentUpon>
+    <Compile Include="Views\MasterDetailPageDetail.xaml.cs">
+      <DependentUpon>MasterDetailPageDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailPage1Master.xaml.cs">
-      <DependentUpon>MasterDetailPage1Master.xaml</DependentUpon>
+    <Compile Include="Views\MasterDetailPageMaster.xaml.cs">
+      <DependentUpon>MasterDetailPageMaster.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\MasterDetailPage1MenuItem.cs" />
     <Compile Include="Views\NewItemPage.xaml.cs">
@@ -158,6 +159,9 @@
     <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.15\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\portable-net45+wp80+win8+wpa81\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -200,19 +204,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MasterDetailPage1.xaml">
+    <EmbeddedResource Include="Views\MasterDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MasterDetailPage1Master.xaml">
+    <EmbeddedResource Include="Views\MasterDetailPageMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MasterDetailPage1Detail.xaml">
+    <EmbeddedResource Include="Views\MasterDetailPageDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

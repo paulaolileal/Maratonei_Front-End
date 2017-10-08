@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using ImageCircle.Forms.Plugin.Droid;
 using Xamarin.Forms;
 
 namespace Maratonei_xamarin.Droid {
@@ -16,7 +17,7 @@ namespace Maratonei_xamarin.Droid {
 
             global::Xamarin.Forms.Forms.Init( this, bundle );
             var x = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
-
+            ImageCircleRenderer.Init();
             LoadApplication( new App() );
         }
     }

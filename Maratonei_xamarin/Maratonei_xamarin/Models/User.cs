@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SQLite.Net.Attributes;
+using TraktApiSharp.Objects.Get.Users;
 
-namespace Maratonei_xamarin.Models
-{
-    [Table("Usuario")]
-    public class User
-    {
+namespace Maratonei_xamarin.Models {
+    [Table( "Usuario" )]
+    public class User {
         [PrimaryKey, AutoIncrement, JsonIgnore]
         public int ID { get; set; }
-        [JsonProperty(PropertyName = "nome")]
+        [JsonProperty( PropertyName = "nome" )]
         public string Nome { get; set; }
-        [JsonProperty(PropertyName = "senha")]
+        [JsonProperty( PropertyName = "senha" )]
         public string Senha { get; set; }
-        [JsonProperty(PropertyName = "traktUser")]
+        [JsonProperty( PropertyName = "traktUser" )]
         public string TraktUser { get; set; }
         [JsonIgnore]
         public bool EstaLogado { get; set; }

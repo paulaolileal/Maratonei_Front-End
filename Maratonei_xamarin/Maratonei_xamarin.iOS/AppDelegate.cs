@@ -1,5 +1,6 @@
 ﻿
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 
 namespace Maratonei_xamarin.iOS
@@ -11,8 +12,8 @@ namespace Maratonei_xamarin.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 			LoadApplication(new App());
-
-			return base.FinishedLaunching(app, options);
+		    ImageCircleRenderer.Init();
+            return base.FinishedLaunching(app, options);
 		}
 	}
 }

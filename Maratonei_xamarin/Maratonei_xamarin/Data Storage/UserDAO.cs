@@ -24,6 +24,11 @@ namespace Maratonei_xamarin.Data_Storage
             Connection.InsertOrReplaceWithChildren(p_User);
         }
 
+        public User Recover(string nick)
+        {
+           return Connection.Get<User>(user => user.Nome.Equals( nick ) );
+        }
+
         public List<User> RecoverUsers()
         {
             return Connection.GetAllWithChildren<User>();

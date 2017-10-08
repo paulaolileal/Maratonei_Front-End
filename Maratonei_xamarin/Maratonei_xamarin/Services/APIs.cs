@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Maratonei_xamarin.Helpers;
 using Maratonei_xamarin.Models;
 using TraktApiSharp;
+using TraktApiSharp.Objects.Get.Users;
 using TvDbSharper;
 
 namespace Maratonei_xamarin.Services {
@@ -16,9 +17,6 @@ namespace Maratonei_xamarin.Services {
         private User user;
         public TraktClient MainTraktClient { get; set; }
         public TvDbClient MainTvDbClient { get; set; }
-
-        private APIs() {
-        }
         private static APIs instance;
         public static APIs Instance => instance ?? (instance = new APIs());
 
@@ -27,6 +25,8 @@ namespace Maratonei_xamarin.Services {
             get { return user; }
             set { user = value; }
         }
+
+        private APIs() { }
 
         public Task Init()
         {
