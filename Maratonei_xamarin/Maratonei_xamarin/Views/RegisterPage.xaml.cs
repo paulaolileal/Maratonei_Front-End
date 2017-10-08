@@ -21,7 +21,7 @@ namespace Maratonei_xamarin.Views
 
             if (Device.RuntimePlatform == Device.Android)
             {
-                NavigationPage.SetHasNavigationBar(this, true);
+                NavigationPage.SetHasNavigationBar(this, false);
             }
             BindingContext = g_RegisterViewModel = new RegisterViewModel();
         }
@@ -96,13 +96,19 @@ namespace Maratonei_xamarin.Views
                     !String.IsNullOrWhiteSpace(g_TraktUserEntry.Text) &&
                     !String.IsNullOrWhiteSpace(g_UserEntry.Text)
                 );
-
-
         }
 
         private bool ValidaSenha()
         {
             return g_PasswordEntry.Text.Equals(g_ConfirmPasswordEntry.Text);
+        }
+
+        private void Trakt_Register_Button(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread((() =>
+            {
+                Device.OpenUri(new Uri("https://trakt.tv/auth/join"));
+            }));
         }
     }
 }
