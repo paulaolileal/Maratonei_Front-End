@@ -15,7 +15,7 @@ namespace Maratonei_xamarin.Views {
 
         public MasterDetailPage1() {
             InitializeComponent();
-            if( Device.RuntimePlatform == Device.Windows ) {
+            if( Device.RuntimePlatform == Device.UWP ) {
                 MasterBehavior = MasterBehavior.Popover; // Added this line of code
             }
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
@@ -25,7 +25,7 @@ namespace Maratonei_xamarin.Views {
         {
             NavigationPage.SetHasNavigationBar(this,false);
             InitializeComponent();
-            if (Device.RuntimePlatform == Device.Windows)
+            if (Device.RuntimePlatform == Device.UWP)
             {
                 MasterBehavior = MasterBehavior.Popover; // Added this line of code
             }

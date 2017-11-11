@@ -35,7 +35,7 @@ namespace Maratonei_xamarin.Views
                     var v_User = new User()
                     {
                         Nome = g_UserEntry.Text,
-                        Senha = g_UserEntry.Text,
+                        Senha = g_PasswordEntry.Text,
                         TraktUser = g_TraktUserEntry.Text
                     };
                     g_RegisterViewModel.IsBusy = true;
