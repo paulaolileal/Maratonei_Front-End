@@ -11,12 +11,12 @@
                 <Frame BackgroundColor="#f2f2f2" 
                        Padding="10">
                     <StackLayout>
-                        <StackLayout.Style>
+                        <!--<StackLayout.Style>
                             <Style TargetType="Entry">
                                 <Setter Property="PlaceholderColor" Value="LightGray"/>
                                 <Setter Property="TextColor" Value="Black"/>
                             </Style>
-                        </StackLayout.Style>
+                        </StackLayout.Style>-->
                         <Entry x:Name="g_EmailEntry" Placeholder="Preencha o email" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
                         <Entry x:Name="g_TraktUserEntry" Placeholder="Entre com o seu Usuário do Trakt" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>
                         <Entry x:Name="g_UserEntry" Placeholder="Preencha o nome de usuário" PlaceholderColor="DarkGray" TextColor="#0F0F0F"/>

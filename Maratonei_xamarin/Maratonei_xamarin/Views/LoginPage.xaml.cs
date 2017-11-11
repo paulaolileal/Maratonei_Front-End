@@ -88,18 +88,27 @@ namespace Maratonei_xamarin.Views
 
         private async void RegisterButton_OnClicked(object sender, EventArgs e)
         {
-            if (g_LoginViewModel.NetworkStatus)
+            try
             {
-                var v_RegisterPage = new RegisterPage();
-                Device.BeginInvokeOnMainThread(async () =>
+
+                if (g_LoginViewModel.NetworkStatus)
                 {
-                    await Navigation.PushAsync(new NavigationPage(v_RegisterPage) { BarBackgroundColor = Colors.NavbarColor });
-                }); 
+                    var v_RegisterPage = new RegisterPage();
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Navigation.PushAsync(new NavigationPage(v_RegisterPage) { BarBackgroundColor = Colors.NavbarColor });
+                    });
+                }
+                else
+                {
+                    await DisplayAlert("Nenhuma conexão encontrada", "Não foi encontrada nenhuma conexão com a internet.",
+                        "Ok");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await DisplayAlert("Nenhuma conexão encontrada", "Não foi encontrada nenhuma conexão com a internet.",
-                    "Ok");
+                var msg = ex.Message;
+
             }
         }
     }

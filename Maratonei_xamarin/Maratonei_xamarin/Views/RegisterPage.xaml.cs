@@ -17,15 +17,16 @@ namespace Maratonei_xamarin.Views
         public RegisterViewModel g_RegisterViewModel;
         public RegisterPage()
         {
+            BindingContext = g_RegisterViewModel = new RegisterViewModel();
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.Android)
             {
                 NavigationPage.SetHasNavigationBar(this, false);
             }
-            BindingContext = g_RegisterViewModel = new RegisterViewModel();
+            
         }
-
+        
         private async void G_SubmitButton_OnClicked(object sender, EventArgs e)
         {
             if (ValidaPreenchimento())
