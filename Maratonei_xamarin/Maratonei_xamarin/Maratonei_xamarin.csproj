@@ -49,6 +49,9 @@
     <Compile Include="Helpers\RequestURLs.cs" />
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
+    <Compile Include="Models\Comida.cs" />
+    <Compile Include="Models\GLPKInput.cs" />
+    <Compile Include="Models\GLPKOutput.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemSearchShow.cs" />
     <Compile Include="Models\ItemMaratonarModel.cs" />
@@ -72,8 +75,10 @@
     <Compile Include="ViewModels\MasterDetailMasterViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SearchShowViewModel.cs" />
+    <Compile Include="ViewModels\SelecionarComidasViewModel.cs" />
     <Compile Include="ViewModels\SelecionarTemporadaViewModel.cs" />
     <Compile Include="ViewModels\SelecionarEpisodioViewModel.cs" />
+    <Compile Include="ViewModels\SolucaoLancharViewModel.cs" />
     <Compile Include="ViewModels\SolucaoViewModel.cs" />
     <Compile Include="ViewModels\WatchListViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
@@ -110,11 +115,17 @@
     <Compile Include="Views\SearchShows.xaml.cs">
       <DependentUpon>SearchShows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelecionarComidasPage.xaml.cs">
+      <DependentUpon>SelecionarComidasPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelecionarEpisodio.xaml.cs">
       <DependentUpon>SelecionarEpisodio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelecionarTemporadas.xaml.cs">
       <DependentUpon>SelecionarTemporadas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolucaoLancharPage.xaml.cs">
+      <DependentUpon>SolucaoLancharPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SolucaoPage.xaml.cs">
       <DependentUpon>SolucaoPage.xaml</DependentUpon>
@@ -275,6 +286,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\WhatchList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SelecionarComidasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SolucaoLancharPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
