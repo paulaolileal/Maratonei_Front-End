@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Maratonei.Models;
+using Maratonei_xamarin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +14,11 @@ namespace Maratonei_xamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SolucaoLancharPage : ContentPage
     {
-        public 
-        public SolucaoLancharPage()
+        public SolucaoLancharViewModel ViewModel;
+        public SolucaoLancharPage(GLPKOutput resp)
         {
             InitializeComponent();
+            BindingContext = ViewModel = new SolucaoLancharViewModel(resp);
         }
     }
 }

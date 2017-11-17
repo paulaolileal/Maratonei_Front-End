@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using ImageCircle.Forms.Plugin.UWP;
+//using ImageCircle.Forms.Plugin.UWP;
 
 namespace Maratonei_xamarin.UWP {
     /// <summary>
@@ -48,7 +48,7 @@ namespace Maratonei_xamarin.UWP {
 
                 Xamarin.Forms.Forms.Init( e );
 
-                ImageCircleRenderer.Init();
+               // ImageCircleRenderer.Init();
 
                 if( e.PreviousExecutionState == ApplicationExecutionState.Terminated ) {
                     //TODO: Load state from previously suspended application

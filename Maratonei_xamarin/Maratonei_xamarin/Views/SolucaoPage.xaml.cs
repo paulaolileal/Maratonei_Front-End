@@ -16,5 +16,12 @@ namespace Maratonei_xamarin.Views {
             InitializeComponent();
             BindingContext = viewModel = new SolucaoViewModel( p_Maratona, p_Solucao );
         }
+
+        private void ToolbarItem_Clicked_Lanchar(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                await Navigation.PushModalAsync(new NavigationPage(new SelecionarComidasPage(double.Parse(viewModel.Total), viewModel.g_SolucaoList)));
+            });
+        }
     }
 }

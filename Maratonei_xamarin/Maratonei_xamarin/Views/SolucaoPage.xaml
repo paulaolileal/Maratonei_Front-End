@@ -2,6 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maratonei_xamarin.Views.SolucaoPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Lanchar" Clicked="ToolbarItem_Clicked_Lanchar"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid>
 

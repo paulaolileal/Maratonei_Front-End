@@ -7,47 +7,79 @@
         <ToolbarItem Text="Ok" Clicked="Button_OnClicked_ok" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Maratonando "/>
-            <StackLayout Orientation="Horizontal">
-                <Label x:Name="Label_Maratona" Text="{Binding Maratona}" FontSize="Large"/>
-                <Label Text=" Eisódios" FontSize="Large"/>
-            </StackLayout>
-            <Entry x:Name="Entry_Quantidade_Por_Epi" Placeholder="Quantidade por epi" Keyboard="Numeric"/>
-            <Label Text="Adicionar Lanches"/>
-            <Entry x:Name="Entry_Nome"  Placeholder="Nome"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Entry x:Name="Entry_Quantidade" Keyboard="Numeric" Grid.Column="0"/>
-                <Button Text="Add" Grid.Column="1" Clicked="Button_Clicked_Add_Comidas"/>
-            </Grid>
-            <ListView VerticalOptions="FillAndExpand"
+        <Grid>
+            <StackLayout>
+                <Label Text="Maratonando "/>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="Label_Maratona" Text="{Binding Maratona}" FontSize="Large"/>
+                    <Label Text=" Episódios" FontSize="Large"/>
+                </StackLayout>
+                <Label Text="Adicionar Lanches"/>
+                <Entry x:Name="Entry_Nome"  Placeholder="Nome"/>
+                <Label Text="Quantidade max por epi"/>
+                <Entry x:Name="Entry_Quantidade_Por_Epi" Placeholder="Quantidade max por episódio" Keyboard="Numeric"/>
+                <!--<Label Text="Quantidade disponível"/>-->
+                <!--<Grid HeightRequest="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Entry x:Name="Entry_Quantidade" Placeholder="Quantidade max por episódio" Keyboard="Numeric" Grid.Column="0" Grid.Row="0"/>
+                    <Button Text="Add" Grid.Column="1" Clicked="Button_Clicked_Add_Comidas" Grid.Row="0"/>
+                </Grid>-->
+                <Label Text="Gasto por episodio"/>
+                <ListView x:Name="Series" ItemsSource="{Binding SelecionarComidas}"
+                          VerticalOptions="FillAndExpand"
+                          HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding Serie}"/>
+                                    <Entry Text="{Binding Quantidade}" Keyboard="Numeric"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Add" Grid.Column="1" Clicked="Button_Clicked_Add_Comidas" Grid.Row="0"/>
+                <ListView VerticalOptions="FillAndExpand"
                           HasUnevenRows="true"
                            ItemsSource="{Binding Comidas}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout Orientation="Vertical" Grid.Column="0">
-                                    <Label Text="{Binding Nome}" Style="{DynamicResource ListItemTextStyle}"/>
-                                    <Label Text="{Binding Quantidade}"/>
-                                </StackLayout>
-                                <Button Text=" X " Grid.Column="1" Clicked="Button_Clicked"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Orientation="Vertical" Grid.Column="0">
+                                        <Label Text="{Binding Nome}" Style="{DynamicResource ListItemTextStyle}"/>
+                                        <Label Text="{Binding MaxPorEpi}"/>
+                                    </StackLayout>
+                                    <Button Text=" X " Grid.Column="1" Clicked="Button_Clicked"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <ContentView x:Name="actInBackground"
+                         BackgroundColor="#222222" Opacity="0.5"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         IsVisible="{Binding IsBusy}"/>
+            <ActivityIndicator x:Name="actInd"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

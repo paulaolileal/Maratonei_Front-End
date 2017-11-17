@@ -11,7 +11,7 @@ namespace Maratonei_xamarin {
     public partial class App : Application {
         public App() {
             InitializeComponent();
-            FlowListView.Init();
+            //FlowListView.Init();
             SetMainPage();
         }
 
@@ -25,8 +25,8 @@ namespace Maratonei_xamarin {
             InitApis();
 
             //Current.MainPage = new MasterDetailPage1();
-            Current.MainPage = ( new SelecionarComidasPage());
-            //Current.MainPage = new NavigationPage(new LoginPage()) {BackgroundColor = Colors.NavbarColor};
+            //Current.MainPage = new NavigationPage( new SelecionarComidasPage(125));
+            Current.MainPage = new NavigationPage(new LoginPage()) {BackgroundColor = Colors.NavbarColor};
             ////Current.MainPage = new MasterDetailPage1();
             //    new TabbedPage {
             //    Children =

@@ -5,7 +5,7 @@ using Maratonei_xamarin.Services;
 using TraktApiSharp.Objects.Get.Shows;
 
 namespace Maratonei_xamarin.Models {
-    class SolucaoModel : BaseDataObject
+    public class SolucaoModel : BaseDataObject
     {
         private double _solucao;
         public double Solucao

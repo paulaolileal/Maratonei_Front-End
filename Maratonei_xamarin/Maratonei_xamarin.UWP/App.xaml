@@ -2,7 +2,7 @@
     x:Class="Maratonei_xamarin.UWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Maratonei_xamarin.UWP"
-    RequestedTheme="Dark">
+    xmlns:local="using:Maratonei_xamarin.UWP">
+    <!--RequestedTheme="Dark">-->
 
 </Application>

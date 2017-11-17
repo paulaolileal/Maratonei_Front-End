@@ -8,18 +8,21 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.ObjectModel;
 
 namespace Maratonei_xamarin.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SelecionarComidasPage : ContentPage
     {
+        private ObservableCollection<SolucaoModel> g_SolucaoList;
+
         public SelecionarComidasViewModel ViewModel { get; }
-        public SelecionarComidasPage()
+
+        public SelecionarComidasPage(double maratona, ObservableCollection<SolucaoModel> g_SolucaoList)
         {
             InitializeComponent();
-            BindingContext = ViewModel = new SelecionarComidasViewModel();
-
+            BindingContext = ViewModel = new SelecionarComidasViewModel(g_SolucaoList) { Maratona = maratona };
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -30,12 +33,23 @@ namespace Maratonei_xamarin.Views
 
         private void Button_Clicked_Add_Comidas(object sender, EventArgs e)
         {
-            ViewModel.AddComida(Entry_Nome.Text, Entry_Quantidade.Text);
+            ViewModel.AddComida(Entry_Nome.Text, Entry_Quantidade_Por_Epi.Text);
+            Entry_Nome.Text = Entry_Quantidade_Por_Epi.Text = "";
         }
 
-        private void Button_OnClicked_ok(object sender, EventArgs e)
+        private async void Button_OnClicked_ok(object sender, EventArgs e)
         {
-            ViewModel.EnviarRequisicao();
+            try { 
+            
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PushModalAsync(new NavigationPage(new SolucaoLancharPage(await ViewModel.Lanchar())));
+                });
+            }
+            catch
+            {
+                await DisplayAlert("", "Não foi possível calcular", "ok");
+            }
         }
     }
 }

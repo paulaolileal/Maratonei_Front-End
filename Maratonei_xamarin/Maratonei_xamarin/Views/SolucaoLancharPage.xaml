@@ -5,14 +5,22 @@
              Padding="16">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Sua solução é:"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding TipoSolucao}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding MensagemSolucao}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="3">
                 <Label Text="Total de lanches" HorizontalOptions="Center"/>
                 <Label Text="{Binding Solucao}" HorizontalOptions="Center"/>
             </StackLayout>
-            <ListView>
+            <ListView VerticalOptions="FillAndExpand"
+                          HasUnevenRows="true"
+                           ItemsSource="{Binding Comidas}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

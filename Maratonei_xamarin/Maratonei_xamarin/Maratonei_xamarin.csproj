@@ -75,6 +75,7 @@
     <Compile Include="ViewModels\MasterDetailMasterViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SearchShowViewModel.cs" />
+    <Compile Include="Models\SelecionarComidasModel.cs" />
     <Compile Include="ViewModels\SelecionarComidasViewModel.cs" />
     <Compile Include="ViewModels\SelecionarTemporadaViewModel.cs" />
     <Compile Include="ViewModels\SelecionarEpisodioViewModel.cs" />
